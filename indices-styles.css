@@ -36,3 +36,13 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolbar input{flex:1;min-width:220px;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:1rem}
 .hidden{display:none!important}.center{text-align:center}.score-big{font-size:3rem;font-weight:900}
 @media(max-width:650px){.shell{padding:12px}.card{padding:15px}table{font-size:.88rem}}
+
+.mastery-row{margin:13px 0}
+.mastery-label{display:flex;justify-content:space-between;gap:12px;margin-bottom:5px}
+.mastery-track{height:12px;background:#e6edf3;border-radius:999px;overflow:hidden}
+.mastery-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.calc-panel{background:#f8fbfd;border:1px solid var(--line);border-radius:14px;padding:15px}
+.calc-panel input{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin:5px 0 10px;font:inherit}
+.result{font-size:1.7rem;font-weight:900;margin-top:8px}
+.notice{background:#eef6ff;border-left:4px solid var(--accent2);padding:12px;border-radius:9px}
