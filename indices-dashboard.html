@@ -1,20 +1,21 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Indices Mastery Dashboard</title><link rel="stylesheet" href="indices-styles.css"></head><body><div class="shell">
-<header><div><h1>📊 Indices Mastery Dashboard</h1><p class="sub">See exactly where the fog lives. / 精准查看薄弱环节。</p></div>
-<div class="nav"><a class="button secondary" href="indices.html">← Hub</a><button class="secondary" onclick="resetIndicesProgress()">Reset progress</button></div></header>
-<section class="card"><h2>Section Summary</h2><div id="sectionStats" class="stats"></div></section>
-<section class="card"><h2>Concept Mastery <span class="zh">概念掌握度</span></h2><div id="concepts"></div></section>
-<section class="card"><div class="notice"><b>How to use this:</b> concepts below 70% deserve another practice round; concepts with fewer than 5 attempts need more evidence.<span class="zh">低于70%的概念建议再次练习；少于5次作答的数据还不够稳定。</span></div></section>
+<title>Indices Dashboard</title><link rel="stylesheet" href="indices-styles.css"></head><body><div class="shell">
+<header><div><h1>📊 Indices Dashboard</h1><p class="sub">A clean study map, not a carnival scoreboard.</p></div>
+<div class="nav"><a class="button secondary" href="indices.html">← Hub</a><button class="secondary" onclick="resetIndicesProgress()">Reset</button></div></header>
+<section class="card"><h2>Summary</h2><div id="sectionStats" class="stats"></div></section>
+<section class="card"><h2>Recommended Next Step</h2><div id="recommendation"></div></section>
+<section class="card"><h2>Concept Mastery</h2><div id="concepts"></div></section>
 </div><script src="indices-common.js"></script><script>
 renderMiniStats('sectionStats');
-const p=getProgress(), box=document.getElementById('concepts');
-const entries=Object.entries(p.concepts||{}).sort((a,b)=>pct(a[1].correct,a[1].done)-pct(b[1].correct,b[1].done));
-if(!entries.length){box.innerHTML='<p class="muted">No quiz data yet. Complete a practice set first. / 还没有练习数据，请先完成一组题目。</p>'}
+const p=getProgress(), entries=Object.entries(p.concepts||{}).map(([name,x])=>({name,score:pct(x.correct,x.done),done:x.done,correct:x.correct})).sort((a,b)=>a.score-b.score);
+const rec=document.getElementById('recommendation');
+if(!entries.length){rec.innerHTML='<p>Start with Random Practice to build a baseline.</p><a class="button primary" href="indices-practice-session.html?mode=random">Start practice</a>'}
 else{
-  box.innerHTML=entries.map(([name,x])=>{
-    const score=pct(x.correct,x.done);
-    const note=x.done<5?'Needs more attempts / 需要更多作答':score<70?'Priority review / 优先复习':score<85?'Developing / 继续巩固':'Strong / 掌握良好';
-    return `<div class="mastery-row"><div class="mastery-label"><b>${name}</b><span>${score}% · ${x.correct}/${x.done} · ${note}</span></div><div class="mastery-track"><div class="mastery-fill" style="width:${score}%"></div></div></div>`;
-  }).join('');
+  const weak=entries.filter(x=>x.score<70);
+  if(weak.length)rec.innerHTML=`<p>Focus next on <b>${weak.slice(0,3).map(x=>x.name).join(', ')}</b>.</p><a class="button primary" href="indices-practice-session.html?mode=weak">Review weak areas</a>`;
+  else rec.innerHTML='<p>Your current concepts are at or above 70%. Try a mock exam.</p><a class="button primary" href="indices-exam.html">Start mock exam</a>';
 }
+const box=document.getElementById('concepts');
+if(!entries.length)box.innerHTML='<p class="muted">No concept data yet.</p>';
+else box.innerHTML=entries.map(x=>`<div class="mastery-row"><div class="mastery-label"><b>${x.name}</b><span>${x.score}% · ${x.correct}/${x.done}</span></div><div class="mastery-track"><div class="mastery-fill" style="width:${x.score}%"></div></div></div>`).join('');
 </script></body></html>

@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Indices Practice</title><link rel="stylesheet" href="indices-styles.css"></head><body><div class="shell">
+<header><div><h1>📝 Practice</h1><p class="sub">Immediate rationales, wrong-answer explanations, bookmarks, and NDHCE pearls.</p></div>
+<div class="nav"><a class="button secondary" href="indices.html">← Hub</a></div></header>
+<section class="card"><div class="mode-grid">
+<a class="mode-card" href="indices-practice-session.html?mode=random"><div class="icon">🎲</div><h2>Random Practice</h2><p>A balanced mixed set.</p></a>
+<a class="mode-card" href="indices-practice-session.html?mode=weak"><div class="icon">🎯</div><h2>Review Weak Areas</h2><p>Questions from your lowest-scoring concepts.</p></a>
+<a class="mode-card" href="indices-practice-session.html?mode=bookmarks"><div class="icon">⭐</div><h2>Bookmarked Questions</h2><p>Revisit questions you saved.</p></a>
+<div class="mode-card"><div class="icon">📖</div><h2>Practice by Concept</h2><select id="conceptSelect"><option value="Absolute vs relative change">Absolute vs relative change</option><option value="Component analysis">Component analysis</option><option value="DMFT">DMFT</option><option value="DMFT classification">DMFT classification</option><option value="GBI">GBI</option><option value="Mean DMFT">Mean DMFT</option><option value="Mixed dentition">Mixed dentition</option><option value="OHI-S">OHI-S</option><option value="PCR">PCR</option><option value="Prevalence">Prevalence</option><option value="deft">deft</option></select>
+<div class="hero-actions"><button class="primary" onclick="goConcept()">Start concept practice</button></div></div>
+</div></section></div><script>
+function goConcept(){const c=document.getElementById('conceptSelect').value;location.href='indices-practice-session.html?mode=concept&concept='+encodeURIComponent(c)}
+</script></body></html>

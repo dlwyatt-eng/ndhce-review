@@ -46,3 +46,16 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .calc-panel input{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;margin:5px 0 10px;font:inherit}
 .result{font-size:1.7rem;font-weight:900;margin-top:8px}
 .notice{background:#eef6ff;border-left:4px solid var(--accent2);padding:12px;border-radius:9px}
+
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.mode-card{display:block;padding:20px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;color:inherit}
+.mode-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(20,40,70,.08)}
+.mode-card .icon{font-size:2rem}
+.pearl{margin-top:14px;padding:14px;border-radius:12px;background:#fff8dd;border-left:4px solid #d8a600}
+.quiz-tools{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#bookmark{min-width:130px}
+.exam-nav{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.timer{font-size:1.25rem;font-weight:900}
+.choice.selected{outline:3px solid var(--accent2)}
+.review-card{border-top:1px solid var(--line);padding:15px 0}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
