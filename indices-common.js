@@ -47,7 +47,11 @@ function startQuiz(bank,section,title){
     html+=`<div class="rationale correct"><b>Why the correct answer is right / 正确答案解析</b><br>${q.why}<span class="zh">${q.zh}</span></div>`;
     q.choices.forEach((c,j)=>{
       if(j!==q.answer){
-        const r=(q.rationales&&q.rationales[j])||{en:'This option does not best match the data or index definition.',zh:'此选项与题目数据或指数定义不最相符。'};
+        const raw=(q.rationales&&q.rationales[j])||{};
+        const r={
+          en: raw.en || 'This option is incorrect because it does not match the calculation, index definition, or clinical interpretation required by the question.',
+          zh: raw.zh || '此选项不正确，因为它不符合题目所要求的计算、指数定义或临床解读。'
+        };
         html+=`<div class="rationale wrong"><b>${String.fromCharCode(65+j)}. ${c}</b><br>${r.en}<span class="zh">${r.zh}</span></div>`;
       }
     });
