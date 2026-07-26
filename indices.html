@@ -107,8 +107,9 @@ function checkAnswer(){
  const q=quiz[qi], ok=selected===q.answer;if(ok)correct++;
  [...document.querySelectorAll('.choice')].forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.classList.add('correct');else if(j===selected)b.classList.add('wrong')});
  const f=document.getElementById('feedback');f.classList.remove('hidden');
- const details=q.choiceRationales.map((r,j)=>`<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line)"><b>${String.fromCharCode(65+j)}. ${q.choices[j]} ${j===q.answer?'✅':''}</b><br>${r.en}<span class="zh">${r.zh}</span></div>`).join('');
- f.innerHTML=`<b>${ok?'✅ Correct':'❌ Not quite'}</b><p><b>Key rationale / 核心解析</b><br>${q.rationale}<span class="zh">${q.zh}</span></p><div><b>Why each option / 各选项解析</b>${details}</div>`;
+ const wrongDetails=q.choiceRationales.map((r,j)=>({r,j})).filter(x=>x.j!==q.answer).map(({r,j})=>`<div style="margin-top:10px;padding:12px;border:1px solid #efcaca;background:#fff7f7;border-radius:10px"><b>❌ ${String.fromCharCode(65+j)}. ${q.choices[j]}</b><br>${r.en}<span class="zh">${r.zh}</span></div>`).join('');
+ const selectedNote=!ok?`<div style="margin-top:12px;padding:12px;border-left:4px solid var(--bad);background:#fff0f0;border-radius:8px"><b>Your answer / 你的答案: ${String.fromCharCode(65+selected)}. ${q.choices[selected]}</b><br>${q.choiceRationales[selected].en}<span class="zh">${q.choiceRationales[selected].zh}</span></div>`:'';
+ f.innerHTML=`<b>${ok?'✅ Correct':'❌ Not quite'}</b><p><b>Correct answer / 正确答案: ${String.fromCharCode(65+q.answer)}. ${q.choices[q.answer]}</b></p><p><b>Why it is correct / 正确原因</b><br>${q.rationale}<span class="zh">${q.zh}</span></p>${selectedNote}<div style="margin-top:14px"><b>Why the other answers are wrong / 其他选项为什么错误</b>${wrongDetails}</div>`;
  const p=progress(),h=p.items[q.index]||{attempts:0,correct:0,lastWrong:false};h.attempts++;if(ok){h.correct++;h.lastWrong=false}else h.lastWrong=true;p.items[q.index]=h;save(p);
  document.getElementById('checkBtn').classList.add('hidden');document.getElementById('nextBtn').classList.remove('hidden');
 }
