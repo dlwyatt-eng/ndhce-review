@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Community Oral Health Practice Exam</title>
+<title>NDHCE Adaptive Community Oral Health Review</title>
 <style>
 :root{
   --bg:#f5f7fb;--card:#fff;--ink:#152238;--muted:#617087;--accent:#157a6e;
@@ -47,6 +47,14 @@ header{display:flex;justify-content:space-between;align-items:center;gap:14px;ma
 .review-item h4{margin:0 0 8px}.review-item p{margin:6px 0;line-height:1.45}
 .small{font-size:.88rem;color:var(--muted)}
 .toggle{display:flex;align-items:center;gap:8px}
+.dashboard{margin:0 0 20px;padding:16px;border:1px solid var(--line);border-radius:15px;background:#f8fbfd}
+.dashboard h3{margin:0 0 10px}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.dash-cell{background:white;border:1px solid var(--line);border-radius:12px;padding:12px}
+.dash-cell strong{display:block;font-size:1.25rem}
+.weak-list{margin:10px 0 0;padding-left:20px}
+.danger{background:#fff1f0;color:var(--bad)}
+.notice{padding:12px;border-radius:12px;background:#fff8e8;border:1px solid #ead5a2;margin:12px 0}
 @media print{
   body{background:white}.no-print{display:none!important}.shell{max-width:none;padding:0}.card{box-shadow:none;border:none}
   .review-item{break-inside:avoid}
@@ -58,12 +66,16 @@ header{display:flex;justify-content:space-between;align-items:center;gap:14px;ma
 <header>
   <div class="brand">
     <h1>Community Oral Health Practice Exam</h1>
-    <p>25 board-style questions • Tutor and Exam modes</p>
+    <p>Bilingual board-style practice • Tutor, Exam, and Adaptive modes</p>
   </div>
   <span class="badge">NDHCE Review</span>
 </header>
 
 <section id="start" class="card">
+  <div id="learningDashboard" class="dashboard">
+    <h3>📊 Meng's Learning Dashboard <span class="zh">学习进度</span></h3>
+    <div id="dashContent"></div>
+  </div>
   <h2>Choose a mode</h2>
   <div class="mode-grid">
     <button class="mode selected" data-mode="tutor">
@@ -74,9 +86,14 @@ header{display:flex;justify-content:space-between;align-items:center;gap:14px;ma
       <h3>⏱️ Exam Mode</h3>
       <p>Complete all questions first. Answers and rationales appear in the final report.<span class="zh">先完成所有题目，答案和解析会在最终报告中显示。</span></p>
     </button>
+    <button class="mode" data-mode="adaptive">
+      <h3>🎯 Adaptive Mode</h3>
+      <p>Prioritizes unseen questions and topics where this browser records lower accuracy.<span class="zh">优先练习未做过的题目，以及正确率较低的薄弱知识点。</span></p>
+    </button>
   </div>
   <label class="toggle"><input id="shuffle" type="checkbox" checked> Shuffle questions and answer choices</label>
-  <p class="small">Your score is calculated locally in this browser. Nothing is uploaded.</p>
+  <div class="notice small">Progress is saved only in this browser on this device. Adaptive Mode learns from the person using this browser.<span class="zh">学习记录只保存在当前设备的浏览器中。自适应模式会根据使用此浏览器的学习者表现调整题目。</span></div>
+  <button id="resetProgress" class="secondary danger" type="button">Reset saved progress / 清除进度</button>
   <button id="begin" class="primary">Begin Exam</button>
 </section>
 
@@ -145,29 +162,76 @@ const zh = {
 25:{r:"循证实践把最佳可用研究证据、临床专业知识，以及患者的价值观、需求和具体情况结合起来。",d:["只有研究证据，无法充分考虑患者情况和临床判断。","只有临床经验，可能受到偏倚和过时做法影响。","正确。","最新和最低成本本身并不能决定最佳护理。"]}
 };
 let mode='tutor', questions=[], index=0, answers=[], checked=[], startedAt=0;
+const PROGRESS_KEY='ndhceCommunityProgressV2';
 
 const $ = id => document.getElementById(id);
 document.querySelectorAll('.mode').forEach(btn=>btn.addEventListener('click',()=>{
   document.querySelectorAll('.mode').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected'); mode=btn.dataset.mode;
+  btn.classList.add('selected'); mode=btn.dataset.mode;$('begin').textContent=mode==='adaptive'?'Begin Adaptive Review':'Begin Exam';
 }));
+
+
+function loadProgress(){
+  try{return JSON.parse(localStorage.getItem(PROGRESS_KEY))||{questions:{},sessions:0,lastDate:null};}
+  catch(e){return {questions:{},sessions:0,lastDate:null};}
+}
+function saveProgress(p){try{localStorage.setItem(PROGRESS_KEY,JSON.stringify(p));}catch(e){}}
+function topicStatsFromProgress(p){
+  const stats={};
+  sourceQuestions.forEach(q=>{
+    const h=p.questions[q.id]||{attempts:0,correct:0};
+    stats[q.topic]??={attempts:0,correct:0};
+    stats[q.topic].attempts+=h.attempts;
+    stats[q.topic].correct+=h.correct;
+  });
+  return stats;
+}
+function updateDashboard(){
+  const p=loadProgress(), histories=Object.values(p.questions);
+  const attempts=histories.reduce((n,h)=>n+(h.attempts||0),0);
+  const correct=histories.reduce((n,h)=>n+(h.correct||0),0);
+  const accuracy=attempts?Math.round(correct/attempts*100):0;
+  const seen=histories.filter(h=>(h.attempts||0)>0).length;
+  const weak=Object.entries(topicStatsFromProgress(p))
+    .filter(([,s])=>s.attempts>0)
+    .map(([name,s])=>({name,acc:s.correct/s.attempts,attempts:s.attempts}))
+    .sort((a,b)=>a.acc-b.acc||b.attempts-a.attempts).slice(0,3);
+  $('dashContent').innerHTML=`
+    <div class="dash-grid">
+      <div class="dash-cell"><strong>${p.sessions||0}</strong>Sessions<span class="zh">练习次数</span></div>
+      <div class="dash-cell"><strong>${seen}/${sourceQuestions.length}</strong>Questions seen<span class="zh">已练习题目</span></div>
+      <div class="dash-cell"><strong>${attempts?accuracy+'%':'—'}</strong>Overall accuracy<span class="zh">总正确率</span></div>
+    </div>
+    ${weak.length?`<p><strong>Current focus areas / 当前薄弱点</strong></p><ul class="weak-list">${weak.map(x=>`<li>${x.name}: ${Math.round(x.acc*100)}% (${x.attempts} attempts)</li>`).join('')}</ul>`:`<p class="small">Complete a quiz to begin personalized tracking.<span class="zh">完成一次练习后，系统将开始个性化记录。</span></p>`}`;
+}
+function adaptiveQuestions(){
+  const p=loadProgress();
+  return sourceQuestions.map(q=>{
+    const h=p.questions[q.id]||{attempts:0,correct:0};
+    const acc=h.attempts?h.correct/h.attempts:0;
+    return {q,score:(h.attempts===0?4:0)+(h.attempts?(1-acc)*3:0)+(h.lastWrong?1.5:0)+Math.random()};
+  }).sort((a,b)=>b.score-a.score).slice(0,15).map(x=>x.q);
+}
 
 function shuffleArray(arr){
   for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
   return arr;
 }
 function prepare(){
-  questions=JSON.parse(JSON.stringify(sourceQuestions));
-  if($('shuffle').checked){
+  const base=mode==='adaptive'?adaptiveQuestions():sourceQuestions;
+  questions=JSON.parse(JSON.stringify(base));
+  if($('shuffle').checked||mode==='adaptive'){
     shuffleArray(questions);
     questions.forEach(q=>{
-      const packed=q.choices.map((c,i)=>({c,old:i,exp:q.distractors[i]}));
+      const z=zh[q.id];
+      const packed=q.choices.map((c,i)=>({c,old:i,exp:q.distractors[i],zexp:z.d[i]}));
       shuffleArray(packed);
       q.choices=packed.map(x=>x.c);
       q.distractors=packed.map(x=>x.exp);
+      q.zhDistractors=packed.map(x=>x.zexp);
       q.answer=packed.findIndex(x=>x.old===q.answer);
     });
-  }
+  }else{questions.forEach(q=>q.zhDistractors=[...zh[q.id].d]);}
   answers=Array(questions.length).fill(null);
   checked=Array(questions.length).fill(false);
   index=0;startedAt=Date.now();
@@ -184,7 +248,7 @@ function render(){
   q.choices.forEach((c,i)=>{
     const b=document.createElement('button');b.className='choice';b.innerHTML=`<strong>${String.fromCharCode(65+i)}.</strong><span>${c}</span>`;
     if(answers[index]===i)b.classList.add('selected');
-    if(mode==='tutor'&&checked[index]){
+    if((mode==='tutor'||mode==='adaptive')&&checked[index]){
       if(i===q.answer)b.classList.add('correct');
       if(answers[index]===i&&i!==q.answer)b.classList.add('wrong');
       b.disabled=true;
@@ -195,7 +259,7 @@ function render(){
   $('prev').disabled=index===0;
   $('feedback').classList.add('hidden');
   $('check').classList.toggle('hidden',mode==='exam'||checked[index]);
-  $('next').classList.toggle('hidden',mode==='tutor'&&!checked[index]);
+  $('next').classList.toggle('hidden',(mode==='tutor'||mode==='adaptive')&&!checked[index]);
   $('next').textContent=index===questions.length-1?'Finish':'Next';
   if(mode==='exam'){
     $('check').classList.add('hidden');$('next').classList.remove('hidden');
@@ -212,7 +276,7 @@ function showFeedback(){
   $('feedback').innerHTML=`<strong>${ok?'Correct':'Not quite'}</strong><br>${q.rationale}
     <span class="zh">${z.r}</span>
     <details class="bilingual"><summary>Why the options work or do not work / 各选项解析</summary>
-    ${q.choices.map((c,i)=>`<p><strong>${String.fromCharCode(65+i)}.</strong> ${q.distractors[i]}<span class="zh">${z.d[i]}</span></p>`).join('')}</details>`;
+    ${q.choices.map((c,i)=>`<p><strong>${String.fromCharCode(65+i)}.</strong> ${q.distractors[i]}<span class="zh">${q.zhDistractors[i]}</span></p>`).join('')}</details>`;
 }
 $('check').onclick=()=>{checked[index]=true;render();};
 $('prev').onclick=()=>{if(index>0){index--;render();}};
@@ -242,14 +306,32 @@ function finish(){
       <p><strong>Your answer:</strong> ${answers[i]===null?'No answer':q.choices[answers[i]]}</p>
       <p><strong>Correct answer:</strong> ${q.choices[q.answer]}</p>
       <p>${q.rationale}<span class="zh">${zh[q.id].r}</span></p>
-      <details><summary>Option-by-option explanation / 逐项解释</summary>${q.choices.map((c,j)=>`<p><strong>${String.fromCharCode(65+j)}. ${c}</strong><br>${q.distractors[j]}<span class="zh">${zh[q.id].d[j]}</span></p>`).join('')}</details>
+      <details><summary>Option-by-option explanation / 逐项解释</summary>${q.choices.map((c,j)=>`<p><strong>${String.fromCharCode(65+j)}. ${c}</strong><br>${q.distractors[j]}<span class="zh">${q.zhDistractors[j]}</span></p>`).join('')}</details>
       <p class="small">${q.topic} • ${q.difficulty}</p>
     </div>`).join('');
+  const progressData=loadProgress();
+  progressData.sessions=(progressData.sessions||0)+1;
+  progressData.lastDate=new Date().toISOString();
+  questions.forEach((q,i)=>{
+    const h=progressData.questions[q.id]||{attempts:0,correct:0,lastWrong:false};
+    h.attempts++;
+    if(answers[i]===q.answer){h.correct++;h.lastWrong=false;}else{h.lastWrong=true;}
+    h.lastSeen=new Date().toISOString();
+    progressData.questions[q.id]=h;
+  });
+  saveProgress(progressData);
+  updateDashboard();
   try{
     localStorage.setItem('communityExamLast',JSON.stringify({date:new Date().toISOString(),correct,total:questions.length,stats}));
   }catch(e){}
 }
 $('restart').onclick=()=>location.reload();
+$('resetProgress').onclick=()=>{
+  if(confirm('Clear all saved Community Oral Health progress? / 确定清除全部学习记录吗？')){
+    localStorage.removeItem(PROGRESS_KEY);updateDashboard();
+  }
+};
+updateDashboard();
 </script>
 </body>
 </html>
