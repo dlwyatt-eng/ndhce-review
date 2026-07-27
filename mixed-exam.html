@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mixed NDHCE Mock Exam</title><link rel="stylesheet" href="indices-styles.css"><link rel="stylesheet" href="mixed-styles.css"></head><body><div class="shell"><header><div><p class="tag">FINAL EXAM CENTRE</p><h1>Mixed NDHCE Mock Exam</h1><p class="sub">Balanced questions across all completed subjects.<span class="zh">涵盖所有已完成科目的综合模拟考试。</span></p></div><a class="button secondary" href="index.html">Home</a></header><section class="card"><div class="exam-controls"><label><b>Exam length:</b> <select id="examLength"><option value="30">30 questions</option><option value="60">60 questions</option><option value="90">90 questions</option></select></label><button class="button primary" onclick="document.getElementById('setup').classList.add('hidden');document.getElementById('exam').classList.remove('hidden');startMixedExam()">Start exam</button></div><p id="setup" class="muted">Questions are balanced across the nine subject banks. Your results are saved to the overall dashboard.</p></section><main id="exam" class="hidden"><section class="card"><div class="quiz-top"><span id="counter"></span><span id="timer" class="timer"></span></div><div class="progress"><span id="bar"></span></div><span id="subject" class="subject-pill"></span><span id="concept" class="tag"></span><h2 id="stem"></h2><div id="choices" class="choices"></div><div class="hero-actions"><button id="prev" class="button secondary">Previous</button><button id="next" class="button secondary">Next</button><button id="finish" class="button primary">Submit exam</button></div><div id="questionMap" class="question-map"></div></section></main></div><script>window.MIXED_SOURCES=[];</script>
+  <script src="pharm-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Pharmacology",key:"pharm",bank:(window.PHARM_BANK||[]).map(q=>({...q,subject:"Pharmacology",subjectKey:"pharm"}))});</script>
+  <script src="poc-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Process of Care",key:"poc",bank:(window.POC_BANK||[]).map(q=>({...q,subject:"Process of Care",subjectKey:"poc"}))});</script>
+  <script src="med-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Medical Emergencies",key:"med",bank:(window.MED_BANK||[]).map(q=>({...q,subject:"Medical Emergencies",subjectKey:"med"}))});</script>
+  <script src="sn-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Medical Conditions & Special Needs",key:"sn",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Medical Conditions & Special Needs",subjectKey:"sn"}))});</script>
+  <script src="path-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Oral Pathology",key:"path",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Oral Pathology",subjectKey:"path"}))});</script>
+  <script src="perio-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Periodontology",key:"perio",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Periodontology",subjectKey:"perio"}))});</script>
+  <script src="law-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Law & Ethics",key:"law",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Law & Ethics",subjectKey:"law"}))});</script>
+  <script src="community-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Community Oral Health & Research",key:"community",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Community Oral Health & Research",subjectKey:"community"}))});</script>
+  <script src="radiology-data.js"></script>
+  <script>window.MIXED_SOURCES.push({name:"Radiology",key:"radiology",bank:(window.FULL_BANK||[]).map(q=>({...q,subject:"Radiology",subjectKey:"radiology"}))});</script><script src="mixed-common.js"></script></body></html>
