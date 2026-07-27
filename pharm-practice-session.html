@@ -1,9 +1,9 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Pharmacology Practice Session</title><link rel="stylesheet" href="pharm-styles.css?v=2"></head><body><div class="shell" id="quiz">
+<title>Pharmacology Practice Session</title><link rel="stylesheet" href="pharm-styles.css"></head><body><div class="shell" id="quiz">
 <header><div><h1>📝 Pharmacology Practice</h1><p class="sub" id="modeTitle"></p></div><div class="nav"><a class="button secondary" href="pharm-practice.html">← Practice menu</a></div></header>
 <section class="card"><div class="progressbar"><div id="bar"></div></div><div class="quiz-tools"><p><span id="counter"></span> <span id="level" class="level"></span> <span id="concept" class="tag"></span></p></div></section>
 <section class="card"><h2 id="stem"></h2><div id="data" class="fact"></div><div id="choices"></div><div id="feedback" class="feedback hidden"></div><button id="next" class="primary hidden">Next question →</button></section>
-</div><script src="pharm-data.js?v=2"></script><script src="pharm-common.js?v=2"></script><script>
+</div><script src="pharm-data.js?v=3"></script><script src="pharm-common.js?v=3"></script><script>
 window.FULL_BANK=window.PHARM_BANK;const p=new URLSearchParams(location.search),mode=p.get('mode')||'random',concept=p.get('concept')||'';
 const names={random:'Random Practice',weak:'Review Weak Areas',concept:'Practice: '+concept};
 document.getElementById('modeTitle').textContent=names[mode]||'Practice';startPractice(selectPracticeBank(window.FULL_BANK,mode,concept),names[mode]||'Practice');
