@@ -57,3 +57,19 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .choice.selected{outline:3px solid var(--accent2)}
 .review-card{border-top:1px solid var(--line);padding:15px 0}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+/* Keep homepage card actions aligned along the bottom edge. */
+.mode-grid > .mode-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.mode-grid > .mode-card > .hero-actions{
+  margin-top:auto;
+  padding-top:18px;
+}
+.mode-grid > .mode-card > .hero-actions .button{
+  width:100%;
+  justify-content:center;
+  text-align:center;
+}
