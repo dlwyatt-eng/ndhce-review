@@ -1,8 +1,119 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NDHCE Medical Emergencies</title><link rel="stylesheet" href="styles.css"></head><body>
-<header><a class="brand" href="index.html">NDHCE Review</a><div class="lang"><button id="langBtn">中文 / EN</button></div></header>
-<main><section class="hero"><span class="eyebrow">Medical Emergencies · 医疗急症</span><h1 data-en="Think clearly when seconds matter." data-zh="分秒必争时，保持清晰判断。">Think clearly when seconds matter.</h1><p data-en="A bilingual, source-grounded module for recognition, first actions, emergency drugs, positioning and escalation." data-zh="双语高效复习模块，聚焦识别、首要行动、急救药物、体位与升级处理。">A bilingual, source-grounded module for recognition, first actions, emergency drugs, positioning and escalation.</p><div class="hero-actions"><button data-view="learn" class="primary">Learn · 学习</button><button data-view="practice">Practice · 练习</button><button data-view="mock">Mock Exam · 模拟考试</button></div></section>
-<section id="dashboard" class="stats"><div><strong id="learnStat">0%</strong><span>Learn viewed</span></div><div><strong id="practiceStat">0/0</strong><span>Practice correct</span></div><div><strong id="mockStat">Not started</strong><span>Mock exam</span></div></section>
-<section id="learn" class="view"><div class="section-head"><h2>Learn · 学习</h2><button class="homeBtn">Back to top</button></div><div id="learnGrid"></div></section>
-<section id="practice" class="view hidden"><div class="section-head"><h2>Practice · 练习</h2><button class="homeBtn">Back to top</button></div><div class="toolbar"><select id="category"></select><button id="newQuestion">New question</button></div><div id="practiceCard"></div></section>
-<section id="mock" class="view hidden"><div class="section-head"><h2>Mock Exam · 模拟考试</h2><button class="homeBtn">Back to top</button></div><div id="mockArea"></div></section>
-</main><footer>Educational review only. Follow current local protocols and scope of practice.</footer><script src="data.js"></script><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NDHCE Review</title>
+  <link rel="stylesheet" href="indices-styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <p class="tag">NDHCE REVIEW</p>
+        <h1>Dental Hygiene Board Exam Review</h1>
+        <p class="sub">
+          A bilingual study platform built for focused learning, clinical reasoning,
+          and realistic exam preparation.
+          <span class="zh">双语牙科卫生师资格考试复习平台，专注于知识掌握、临床推理和模拟考试。</span>
+        </p>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Mastery Centres</h2>
+      <p class="muted">Choose a subject to begin. Progress is saved in this browser.</p>
+
+      <div class="mode-grid">
+        <a class="mode-card" href="indices.html">
+          <div class="icon">📈</div>
+          <h2>Indices</h2>
+          <p>DMFT, deft, OHI-S, PCR, prevalence, calculations, and interpretation.</p>
+          <span class="zh">龋失补指数、口腔卫生指数、菌斑记录、患病率、计算与结果解读。</span>
+          <div class="hero-actions">
+            <span class="button primary">Open Mastery Centre</span>
+          </div>
+        </a>
+
+        <a class="mode-card" href="process-of-care.html">
+          <div class="icon">📝</div>
+          <h2>Process of Care</h2>
+          <p>Assessment, dental hygiene diagnosis, planning, implementation, evaluation, consent, and documentation.</p>
+          <span class="zh">评估、牙科卫生诊断、计划、实施、评价、知情同意与记录。</span>
+          <div class="hero-actions"><span class="button primary">Open Mastery Centre</span></div>
+        </a>
+        <a class="mode-card" href="pharmacology.html">
+          <div class="icon">💊</div>
+          <h2>Pharmacology</h2>
+          <p>Drug classes, indications, adverse effects, interactions, and dental implications.</p>
+          <span class="zh">药物分类、适应症、不良反应、相互作用及牙科注意事项。</span>
+          <div class="hero-actions"><span class="button primary">Open Mastery Centre</span></div>
+        </a>
+
+        <div class="mode-card" aria-disabled="true">
+          <div class="icon">🚨</div>
+          <h2>Medical Emergencies</h2>
+          <p>Recognition, immediate management, emergency drugs, and clinical priorities.</p>
+          <span class="zh">识别紧急状况、即时处理、急救药物及临床优先顺序。</span>
+          <p class="tag">Planned</p>
+        </div>
+
+        <div class="mode-card" aria-disabled="true">
+          <div class="icon">🩻</div>
+          <h2>Radiology</h2>
+          <p>Image interpretation, technique errors, safety, and radiographic decision-making.</p>
+          <span class="zh">影像解读、拍摄错误、辐射安全与临床决策。</span>
+          <p class="tag">Planned</p>
+        </div>
+
+        <div class="mode-card" aria-disabled="true">
+          <div class="icon">🦷</div>
+          <h2>Periodontology</h2>
+          <p>Classification, risk factors, instrumentation, treatment, and maintenance.</p>
+          <span class="zh">牙周分类、危险因素、器械操作、治疗与维护。</span>
+          <p class="tag">Planned</p>
+        </div>
+
+        <div class="mode-card" aria-disabled="true">
+          <div class="icon">🧬</div>
+          <h2>Pathology</h2>
+          <p>Lesion recognition, differential thinking, systemic disease, and referral decisions.</p>
+          <span class="zh">病变识别、鉴别思维、系统性疾病与转诊决策。</span>
+          <p class="tag">Planned</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>How to study</h2>
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="icon">📚</div>
+          <h3>Learn</h3>
+          <p>Build the concept first with concise bilingual lessons and worked examples.</p>
+        </div>
+        <div class="mode-card">
+          <div class="icon">📝</div>
+          <h3>Practice</h3>
+          <p>Use immediate rationales, concept practice, and weak-area review.</p>
+        </div>
+        <div class="mode-card">
+          <div class="icon">🎓</div>
+          <h3>Test</h3>
+          <p>Complete mock exams without feedback until submission, then review every answer.</p>
+        </div>
+        <div class="mode-card">
+          <div class="icon">📊</div>
+          <h3>Improve</h3>
+          <p>Use the dashboard to identify the next concept that deserves attention.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="card center">
+      <p><b>Active mastery centres:</b> Indices v4.0, Process of Care v1.0, and Pharmacology v1.0</p>
+      <p class="muted">More mastery centres will be added using the same streamlined framework.</p>
+    </footer>
+  </div>
+</body>
+</html>
