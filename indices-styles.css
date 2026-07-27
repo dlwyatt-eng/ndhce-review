@@ -31,7 +31,6 @@ button,.button{border:0;border-radius:12px;padding:11px 15px;font-weight:700;cur
 .progressbar{height:10px;background:#e3ebf0;border-radius:999px;overflow:hidden}.progressbar div{height:100%;background:var(--accent);width:0}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}.stat{padding:14px;background:#f7fafc;border:1px solid var(--line);border-radius:12px}.stat strong{font-size:1.5rem;display:block}
 table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eef5f8}
-.workbox{width:100%;min-height:95px;border:1px dashed #9eb2c5;border-radius:12px;padding:12px;font:inherit;background:#fbfdff}
 .step{padding:10px 12px;margin:8px 0;border-left:4px solid var(--accent2);background:#f2f7ff;border-radius:8px}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolbar input{flex:1;min-width:220px;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:1rem}
 .hidden{display:none!important}.center{text-align:center}.score-big{font-size:3rem;font-weight:900}
@@ -53,7 +52,6 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .mode-card .icon{font-size:2rem}
 .pearl{margin-top:14px;padding:14px;border-radius:12px;background:#fff8dd;border-left:4px solid #d8a600}
 .quiz-tools{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
-#bookmark{min-width:130px}
 .exam-nav{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
 .timer{font-size:1.25rem;font-weight:900}
 .choice.selected{outline:3px solid var(--accent2)}

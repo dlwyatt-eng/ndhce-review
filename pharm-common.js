@@ -1,6 +1,5 @@
 
 const KEY='ndhce_pharm_progress_v1';
-const BOOKMARK_KEY='ndhce_pharm_bookmarks_v1';
 
 function emptyProgress(){
   return {
@@ -18,18 +17,6 @@ function getProgress(){
 }
 function saveProgress(p){localStorage.setItem(KEY,JSON.stringify(p))}
 function pct(n,d){return d?Math.round(n/d*100):0}
-function getBookmarks(){
-  try{return JSON.parse(localStorage.getItem(BOOKMARK_KEY))||[]}
-  catch(e){return []}
-}
-function saveBookmarks(ids){localStorage.setItem(BOOKMARK_KEY,JSON.stringify(ids))}
-function isBookmarked(id){return getBookmarks().includes(id)}
-function toggleBookmark(id){
-  const ids=getBookmarks(), i=ids.indexOf(id);
-  if(i>=0)ids.splice(i,1); else ids.push(id);
-  saveBookmarks(ids);
-  return ids.includes(id);
-}
 function record(section,correct,concept){
   const p=getProgress();
   p.sections=p.sections||emptyProgress().sections;
@@ -46,9 +33,8 @@ function record(section,correct,concept){
   return p;
 }
 function resetPharmProgress(){
-  if(confirm('Reset all Pharmacology progress and bookmarks? / 重置所有指数进度和书签？')){
+  if(confirm('Reset all Pharmacology progress? / 重置所有指数进度和书签？')){
     localStorage.removeItem(KEY);
-    localStorage.removeItem(BOOKMARK_KEY);
     location.reload();
   }
 }
@@ -63,8 +49,6 @@ function weakestConcepts(limit=4){
     .map(x=>x.name);
 }
 function selectPracticeBank(bank,mode,concept){
-  const bookmarks=getBookmarks();
-  if(mode==='bookmarks')return bank.filter(q=>bookmarks.includes(q.id));
   if(mode==='concept')return bank.filter(q=>q.concept===concept);
   if(mode==='weak'){
     const weak=weakestConcepts(4);
@@ -88,16 +72,10 @@ function startPractice(bank,title='Practice'){
     feedback=document.getElementById('feedback'), next=document.getElementById('next'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
     level=document.getElementById('level'), data=document.getElementById('data'),
-    workspace=document.getElementById('workspace'), conceptTag=document.getElementById('concept'),
-    bookmark=document.getElementById('bookmark');
+    conceptTag=document.getElementById('concept');
   if(!order.length){
-    document.getElementById('quiz').innerHTML=`<div class="card center"><h2>No questions found</h2><p>Try another practice option or bookmark a question first.</p><a class="button primary" href="indices-practice.html">Back to Practice</a></div>`;
+    document.getElementById('quiz').innerHTML=`<div class="card center"><h2>No questions found</h2><p>Try another practice option.</p><a class="button primary" href="pharm-practice.html">Back to Practice</a></div>`;
     return;
-  }
-  function paintBookmark(q){
-    if(!bookmark)return;
-    bookmark.textContent=isBookmarked(q.id)?'★ Bookmarked':'☆ Bookmark';
-    bookmark.onclick=()=>{const on=toggleBookmark(q.id);bookmark.textContent=on?'★ Bookmarked':'☆ Bookmark'};
   }
   function load(){
     locked=false; feedback.classList.add('hidden'); next.classList.add('hidden');
@@ -106,8 +84,7 @@ function startPractice(bank,title='Practice'){
     bar.style.width=`${i/order.length*100}%`;
     stem.innerHTML=q.stem; level.textContent=q.level||title;
     data.innerHTML=q.data||''; if(conceptTag)conceptTag.textContent=q.concept||'Mixed';
-    choices.innerHTML=''; if(workspace)workspace.value='';
-    paintBookmark(q);
+    choices.innerHTML='';
     q.choices.forEach((c,idx)=>{
       const b=document.createElement('button'); b.className='choice';
       b.innerHTML=`${String.fromCharCode(65+idx)}. ${c}`;
