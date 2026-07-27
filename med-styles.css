@@ -54,7 +54,7 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .quiz-tools{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .exam-nav{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
 .timer{font-size:1.25rem;font-weight:900}
-.choice.selected{outline:3px solid var(--accent2)}
+
 .review-card{border-top:1px solid var(--line);padding:15px 0}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 
