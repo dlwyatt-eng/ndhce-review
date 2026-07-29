@@ -49,6 +49,7 @@ function weakestConcepts(limit=4){
     .map(x=>x.name);
 }
 function selectPracticeBank(bank,mode,concept){
+  if(mode==='visual')return bank.filter(q=>q.image);
   if(mode==='concept')return bank.filter(q=>q.concept===concept);
   if(mode==='weak'){
     const weak=weakestConcepts(4);
@@ -83,7 +84,13 @@ function startPractice(bank,title='Practice'){
     counter.textContent=`Question ${i+1} of ${order.length}`;
     bar.style.width=`${i/order.length*100}%`;
     stem.innerHTML=q.stem; level.textContent=q.level||title;
-    data.innerHTML=q.data||''; if(conceptTag)conceptTag.textContent=q.concept||'Mixed';
+    data.innerHTML='';
+    if(q.image){
+      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}" onerror="this.parentElement.innerHTML='<div class=&quot;visual-error&quot;>Visual could not load. Please refresh the page.<br>图像无法加载，请刷新页面。</div>'"><figcaption>Visual question / 图像题</figcaption></figure>`;
+    }else{
+      data.innerHTML=q.data||'';
+    }
+    if(conceptTag)conceptTag.textContent=q.concept||'Mixed';
     choices.innerHTML='';
     q.choices.forEach((c,idx)=>{
       const b=document.createElement('button'); b.className='choice';
@@ -148,7 +155,14 @@ function startExam(bank,minutes=20){
   function load(){
     const q=order[i]; counter.textContent=`Question ${i+1} of ${order.length}`;
     bar.style.width=`${i/order.length*100}%`; stem.innerHTML=q.stem;
-    level.textContent=q.level||'Mock Exam'; data.innerHTML=q.data||''; concept.textContent=q.concept||'Mixed';
+    level.textContent=q.level||'Mock Exam';
+    data.innerHTML='';
+    if(q.image){
+      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}" onerror="this.parentElement.innerHTML='<div class=&quot;visual-error&quot;>Visual could not load. Please refresh the page.<br>图像无法加载，请刷新页面。</div>'"><figcaption>Visual question / 图像题</figcaption></figure>`;
+    }else{
+      data.innerHTML=q.data||'';
+    }
+    concept.textContent=q.concept||'Mixed';
     choices.innerHTML='';
     q.choices.forEach((c,idx)=>{
       const b=document.createElement('button'); b.className='choice';
@@ -171,7 +185,7 @@ function startExam(bank,minutes=20){
     });
     const review=order.map((q,n)=>{
       const user=answers[q.id];
-      return `<div class="review-card"><h3>${n+1}. ${q.stem}</h3>
+      return `<div class="review-card">${q.image?`<img class="review-visual" src="${q.image}" alt="${q.imageAlt||'Question visual'}">`:''}<h3>${n+1}. ${q.stem}</h3>
       <p><b>Your answer:</b> ${user===undefined?'Not answered':String.fromCharCode(65+user)+'. '+q.choices[user]}</p>
       <p><b>Correct answer:</b> ${String.fromCharCode(65+q.answer)}. ${q.choices[q.answer]}</p>
       <p>${q.why}</p><span class="zh">${q.zh}</span></div>`;
