@@ -1562,6 +1562,499 @@ const COMMUNITY_BANK=[
     ],
     "level": "Board-style",
     "pearl": "Priority setting weighs magnitude, seriousness, preventability, feasibility, and community concern."
+  },
+  {
+    "id": 47,
+    "concept": "Incidence & Prevalence",
+    "stem": "At the start of a year, 80 of 1,000 adults have untreated root caries. During the year, 40 new cases develop among those initially disease-free. What is the annual incidence proportion?<span class=\"zh\">年初1000名成人中有80名患未治疗根面龋。年内在起初无病者中出现40例新病例。年发病比例是多少？</span>",
+    "choices": [
+      "4.0%<span class=\"zh\">4.0%</span>",
+      "4.35%<span class=\"zh\">4.35%</span>",
+      "8.0%<span class=\"zh\">8.0%</span>",
+      "12.0%<span class=\"zh\">12.0%</span>"
+    ],
+    "answer": 1,
+    "why": "Incidence proportion uses new cases divided by the population at risk: 40 ÷ 920 = 4.35%.",
+    "zh": "发病比例以新病例数除以有风险人群：40 ÷ 920 = 4.35%。",
+    "rationales": [
+      {
+        "en": "This incorrectly divides by the full 1,000, including people who already had disease and were not at risk of becoming new cases.",
+        "zh": "此计算错误地使用全部1000人作分母，包括已患病、不能成为新病例的人。"
+      },
+      {
+        "en": "This correctly excludes the 80 existing cases from the denominator and divides 40 new cases by 920 people at risk.",
+        "zh": "此计算正确排除80例现患病例，并用40例新病例除以920名有风险者。"
+      },
+      {
+        "en": "This is the baseline prevalence, not the incidence proportion.",
+        "zh": "这是基线患病率，不是发病比例。"
+      },
+      {
+        "en": "This combines existing and new cases and does not measure incidence.",
+        "zh": "这把现患与新发病例合并，不能衡量发病率。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Incidence proportion uses new cases divided by the population at risk: 40 ÷ 920 = 4.35%.",
+    "data": "Population at risk = 1,000 − 80 = 920",
+    "steps": [
+      "Exclude existing cases from the population at risk.",
+      "Divide 40 new cases by 920.",
+      "Multiply by 100 to express a percentage."
+    ]
+  },
+  {
+    "id": 48,
+    "concept": "Incidence & Prevalence",
+    "stem": "A one-day school screening finds gingivitis in 150 of 600 students. Which measure is being calculated?<span class=\"zh\">某校一天内筛查600名学生，发现150名患牙龈炎。此计算属于哪项指标？</span>",
+    "choices": [
+      "Incidence rate<span class=\"zh\">发病率</span>",
+      "Point prevalence<span class=\"zh\">时点患病率</span>",
+      "Case-fatality rate<span class=\"zh\">病死率</span>",
+      "Relative risk<span class=\"zh\">相对危险度</span>"
+    ],
+    "answer": 1,
+    "why": "A cross-sectional count of existing cases at one point in time measures point prevalence.",
+    "zh": "在某一时间点横断面统计现有病例，衡量的是时点患病率。",
+    "rationales": [
+      {
+        "en": "Incidence requires new cases occurring over a defined period among people at risk.",
+        "zh": "发病率需要在规定时期内统计有风险人群中的新病例。"
+      },
+      {
+        "en": "The screening measures existing disease in the population on one day, which is point prevalence.",
+        "zh": "该筛查统计某一天人群中的现患疾病，即时点患病率。"
+      },
+      {
+        "en": "Case-fatality concerns deaths among people with a disease.",
+        "zh": "病死率是指患病者中的死亡比例。"
+      },
+      {
+        "en": "Relative risk compares disease occurrence between exposed and unexposed groups.",
+        "zh": "相对危险度比较暴露组与未暴露组的疾病发生。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "A cross-sectional count of existing cases at one point in time measures point prevalence."
+  },
+  {
+    "id": 49,
+    "concept": "Screening Tests",
+    "stem": "A screening test correctly identifies 90 of 100 people who truly have oral cancer. What is its sensitivity?<span class=\"zh\">某筛查试验在100名确有口腔癌者中正确检出90名。其敏感度是多少？</span>",
+    "choices": [
+      "10%<span class=\"zh\">10%</span>",
+      "90%<span class=\"zh\">90%</span>",
+      "100%<span class=\"zh\">100%</span>",
+      "Cannot be determined<span class=\"zh\">无法确定</span>"
+    ],
+    "answer": 1,
+    "why": "Sensitivity is the proportion of true cases correctly identified: 90 ÷ 100 = 90%.",
+    "zh": "敏感度是正确识别真实病例的比例：90 ÷ 100 = 90%。",
+    "rationales": [
+      {
+        "en": "Ten percent is the false-negative proportion, not sensitivity.",
+        "zh": "10%是假阴性比例，不是敏感度。"
+      },
+      {
+        "en": "Ninety true positives among 100 diseased people gives 90% sensitivity.",
+        "zh": "100名患病者中有90名真阳性，因此敏感度为90%。"
+      },
+      {
+        "en": "A sensitivity of 100% would require identifying all 100 true cases.",
+        "zh": "敏感度100%需检出全部100名真实病例。"
+      },
+      {
+        "en": "The numerator and denominator needed for sensitivity are provided.",
+        "zh": "题目已提供计算敏感度所需的分子和分母。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Sensitivity is the proportion of true cases correctly identified: 90 ÷ 100 = 90%.",
+    "steps": [
+      "True positives = 90.",
+      "All people with disease = 100.",
+      "Sensitivity = 90/100 × 100."
+    ]
+  },
+  {
+    "id": 50,
+    "concept": "Screening Tests",
+    "stem": "Which change most commonly increases the positive predictive value of a screening test, assuming sensitivity and specificity remain constant?<span class=\"zh\">在敏感度和特异度不变时，哪项变化通常会提高筛查试验的阳性预测值？</span>",
+    "choices": [
+      "Lower disease prevalence<span class=\"zh\">疾病患病率降低</span>",
+      "Higher disease prevalence<span class=\"zh\">疾病患病率升高</span>",
+      "A smaller sample size<span class=\"zh\">样本量更小</span>",
+      "More examiner calibration<span class=\"zh\">更多检查者校准</span>"
+    ],
+    "answer": 1,
+    "why": "Positive predictive value generally rises as disease prevalence in the tested population rises.",
+    "zh": "受检人群中疾病患病率升高时，阳性预测值通常升高。",
+    "rationales": [
+      {
+        "en": "Lower prevalence produces more false positives relative to true positives and lowers positive predictive value.",
+        "zh": "患病率降低时，假阳性相对真阳性增多，阳性预测值下降。"
+      },
+      {
+        "en": "With more true disease in the tested population, a positive result is more likely to be a true positive.",
+        "zh": "受检人群真实患病者更多时，阳性结果更可能是真阳性。"
+      },
+      {
+        "en": "Sample size affects precision but does not by itself determine positive predictive value.",
+        "zh": "样本量影响精确度，但本身不决定阳性预测值。"
+      },
+      {
+        "en": "Calibration improves measurement consistency but does not directly change prevalence-dependent predictive value.",
+        "zh": "校准提高测量一致性，但不会直接改变依赖患病率的预测值。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Positive predictive value generally rises as disease prevalence in the tested population rises."
+  },
+  {
+    "id": 51,
+    "concept": "Descriptive Statistics",
+    "stem": "Annual DMFT scores in a small group are 1, 2, 2, 3, and 12. Which measure best represents the typical score when the distribution is skewed by the value 12?<span class=\"zh\">某小组年度DMFT评分为1、2、2、3和12。由于12造成偏态，哪项指标最能代表典型评分？</span>",
+    "choices": [
+      "Mean<span class=\"zh\">均数</span>",
+      "Median<span class=\"zh\">中位数</span>",
+      "Range<span class=\"zh\">极差</span>",
+      "Standard deviation<span class=\"zh\">标准差</span>"
+    ],
+    "answer": 1,
+    "why": "The median is resistant to an extreme value and better represents the centre of this skewed distribution.",
+    "zh": "中位数不易受极端值影响，更能代表该偏态分布的中心。",
+    "rationales": [
+      {
+        "en": "The mean is pulled upward by the outlier value of 12.",
+        "zh": "均数会被极端值12向上拉高。"
+      },
+      {
+        "en": "The ordered middle value is 2, and the median is robust to the outlier.",
+        "zh": "排序后的中间值为2，中位数对异常值较稳健。"
+      },
+      {
+        "en": "The range describes spread, not the typical central value.",
+        "zh": "极差描述离散程度，而非典型中心值。"
+      },
+      {
+        "en": "Standard deviation describes variability around the mean, not the most representative centre here.",
+        "zh": "标准差描述均数周围的变异，不是此处最具代表性的中心值。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "The median is resistant to an extreme value and better represents the centre of this skewed distribution."
+  },
+  {
+    "id": 52,
+    "concept": "Descriptive Statistics",
+    "stem": "Two communities have the same mean DMFT score. Community A has a much larger standard deviation than Community B. What does this indicate?<span class=\"zh\">两个社区的平均DMFT相同。社区A的标准差远大于社区B。这说明什么？</span>",
+    "choices": [
+      "Community A has more variable DMFT scores<span class=\"zh\">社区A的DMFT评分变异更大</span>",
+      "Community A has a higher average DMFT<span class=\"zh\">社区A的平均DMFT更高</span>",
+      "Community B has more outliers by definition<span class=\"zh\">社区B按定义有更多异常值</span>",
+      "The samples must be the same size<span class=\"zh\">两组样本量必然相同</span>"
+    ],
+    "answer": 0,
+    "why": "A larger standard deviation indicates scores are more dispersed around the mean.",
+    "zh": "较大的标准差表示评分在均数周围分布更分散。",
+    "rationales": [
+      {
+        "en": "Standard deviation measures dispersion, so the larger value means greater variability in Community A.",
+        "zh": "标准差衡量离散程度，因此社区A变异更大。"
+      },
+      {
+        "en": "The means are stated to be equal; standard deviation does not change the average.",
+        "zh": "题目已说明均数相同；标准差不会改变平均值。"
+      },
+      {
+        "en": "A larger or smaller standard deviation does not by itself prove a specific number of outliers.",
+        "zh": "标准差大小本身不能证明异常值数量。"
+      },
+      {
+        "en": "Standard deviation can differ even when sample sizes differ or are equal.",
+        "zh": "无论样本量相同或不同，标准差都可能不同。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "A larger standard deviation indicates scores are more dispersed around the mean."
+  },
+  {
+    "id": 53,
+    "concept": "Sampling",
+    "stem": "A researcher selects every 20th name from an alphabetized school roster after choosing a random starting point. Which sampling method is this?<span class=\"zh\">研究者随机确定起点后，从按字母排序的学生名册中每隔20人抽取一人。这是什么抽样方法？</span>",
+    "choices": [
+      "Simple random sampling<span class=\"zh\">简单随机抽样</span>",
+      "Systematic sampling<span class=\"zh\">系统抽样</span>",
+      "Cluster sampling<span class=\"zh\">整群抽样</span>",
+      "Convenience sampling<span class=\"zh\">便利抽样</span>"
+    ],
+    "answer": 1,
+    "why": "Selecting every kth person after a random start is systematic sampling.",
+    "zh": "随机起点后每隔固定人数抽取属于系统抽样。",
+    "rationales": [
+      {
+        "en": "Simple random sampling gives each person an independently selected random chance without a fixed interval.",
+        "zh": "简单随机抽样是对每个人独立随机抽取，不采用固定间隔。"
+      },
+      {
+        "en": "The fixed interval of every 20th name identifies systematic sampling.",
+        "zh": "每隔20人这一固定间隔表明是系统抽样。"
+      },
+      {
+        "en": "Cluster sampling selects intact groups, such as entire schools or classrooms.",
+        "zh": "整群抽样选择完整群体，如整所学校或整个班级。"
+      },
+      {
+        "en": "Convenience sampling selects participants because they are easy to access.",
+        "zh": "便利抽样因对象容易接触而选择。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Selecting every kth person after a random start is systematic sampling."
+  },
+  {
+    "id": 54,
+    "concept": "Bias & Confounding",
+    "stem": "Adults with periodontitis are asked to remember their smoking habits from 20 years ago, while controls are asked the same questions. Which bias is the greatest concern?<span class=\"zh\">牙周炎患者和对照者都被要求回忆20年前的吸烟习惯。最应担心哪种偏倚？</span>",
+    "choices": [
+      "Recall bias<span class=\"zh\">回忆偏倚</span>",
+      "Observer bias<span class=\"zh\">观察者偏倚</span>",
+      "Publication bias<span class=\"zh\">发表偏倚</span>",
+      "Lead-time bias<span class=\"zh\">领先时间偏倚</span>"
+    ],
+    "answer": 0,
+    "why": "Retrospective self-report of distant past exposure is especially vulnerable to recall bias.",
+    "zh": "回顾性自报久远暴露史尤其容易产生回忆偏倚。",
+    "rationales": [
+      {
+        "en": "Cases and controls may remember or report past smoking differently, creating recall bias.",
+        "zh": "病例与对照可能对过去吸烟情况的记忆或报告不同，形成回忆偏倚。"
+      },
+      {
+        "en": "Observer bias concerns the examiner’s expectations influencing measurement, not distant self-recall.",
+        "zh": "观察者偏倚是检查者期望影响测量，而非久远自我回忆。"
+      },
+      {
+        "en": "Publication bias occurs when studies with certain results are more likely to be published.",
+        "zh": "发表偏倚是某些结果的研究更容易发表。"
+      },
+      {
+        "en": "Lead-time bias relates to apparently longer survival from earlier diagnosis without changing death time.",
+        "zh": "领先时间偏倚与早期诊断造成表面生存期延长有关。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Retrospective self-report of distant past exposure is especially vulnerable to recall bias."
+  },
+  {
+    "id": 55,
+    "concept": "Bias & Confounding",
+    "stem": "A study finds an association between coffee drinking and periodontal disease, but coffee drinkers in the sample are also much more likely to smoke. Smoking is best described as:<span class=\"zh\">研究发现饮咖啡与牙周病相关，但样本中的咖啡饮用者也更可能吸烟。吸烟最适合描述为：</span>",
+    "choices": [
+      "An outcome<span class=\"zh\">结局变量</span>",
+      "A confounder<span class=\"zh\">混杂因素</span>",
+      "Random error only<span class=\"zh\">仅为随机误差</span>",
+      "A screening variable<span class=\"zh\">筛查变量</span>"
+    ],
+    "answer": 1,
+    "why": "Smoking is associated with the exposure and independently affects periodontal disease, so it may confound the observed association.",
+    "zh": "吸烟既与暴露因素相关，又独立影响牙周病，因此可能混杂所观察到的关联。",
+    "rationales": [
+      {
+        "en": "Periodontal disease is the outcome in this example, not smoking.",
+        "zh": "本例中的结局是牙周病，不是吸烟。"
+      },
+      {
+        "en": "Smoking may create or distort the apparent coffee–periodontitis relationship and is therefore a confounder.",
+        "zh": "吸烟可能产生或扭曲咖啡与牙周炎的表面关系，因此是混杂因素。"
+      },
+      {
+        "en": "The systematic relationship with both exposure and outcome is more than random error.",
+        "zh": "它与暴露和结局均系统相关，不只是随机误差。"
+      },
+      {
+        "en": "A screening variable is used to classify possible disease, which is not the role described.",
+        "zh": "筛查变量用于识别可能疾病，不符合此处作用。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Smoking is associated with the exposure and independently affects periodontal disease, so it may confound the observed association."
+  },
+  {
+    "id": 56,
+    "concept": "Study Design",
+    "stem": "Researchers identify adults with oral cancer and adults without oral cancer, then compare their previous tobacco exposure. Which study design is this?<span class=\"zh\">研究者先确定口腔癌患者和无口腔癌者，再比较其既往烟草暴露。这是哪种研究设计？</span>",
+    "choices": [
+      "Cohort study<span class=\"zh\">队列研究</span>",
+      "Case-control study<span class=\"zh\">病例对照研究</span>",
+      "Randomized clinical trial<span class=\"zh\">随机临床试验</span>",
+      "Cross-sectional survey<span class=\"zh\">横断面调查</span>"
+    ],
+    "answer": 1,
+    "why": "Case-control studies begin with outcome status and look backward to compare prior exposures.",
+    "zh": "病例对照研究从结局状态开始，再回顾比较既往暴露。",
+    "rationales": [
+      {
+        "en": "A cohort study begins with exposure status and follows or compares subsequent outcomes.",
+        "zh": "队列研究从暴露状态开始，随后观察或比较结局。"
+      },
+      {
+        "en": "Starting with cases and controls and looking back at tobacco exposure defines a case-control study.",
+        "zh": "先选病例和对照，再回顾烟草暴露，属于病例对照研究。"
+      },
+      {
+        "en": "A randomized trial assigns an intervention; no intervention is assigned here.",
+        "zh": "随机试验需分配干预，本题没有干预分配。"
+      },
+      {
+        "en": "A cross-sectional survey measures exposure and outcome at the same time.",
+        "zh": "横断面调查在同一时间测量暴露和结局。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "Case-control studies begin with outcome status and look backward to compare prior exposures."
+  },
+  {
+    "id": 57,
+    "concept": "Program Evaluation",
+    "stem": "A school sealant program aims to place sealants on 85% of eligible first molars within one academic year. Which evaluation measure is the best direct indicator of whether this objective was achieved?<span class=\"zh\">某校窝沟封闭项目目标是在一学年内为85%的符合条件第一恒磨牙进行封闭。哪项评估指标最直接判断目标是否达成？</span>",
+    "choices": [
+      "Percentage of eligible molars sealed<span class=\"zh\">符合条件磨牙中已封闭的百分比</span>",
+      "Change in community caries prevalence after 10 years<span class=\"zh\">10年后社区龋病患病率变化</span>",
+      "Number of posters distributed<span class=\"zh\">发放海报数量</span>",
+      "Student satisfaction with the waiting room<span class=\"zh\">学生对候诊区的满意度</span>"
+    ],
+    "answer": 0,
+    "why": "The objective specifies a measurable coverage target, so sealant coverage is the direct process/output indicator.",
+    "zh": "该目标规定了可测量的覆盖率，因此封闭覆盖率是最直接的过程/产出指标。",
+    "rationales": [
+      {
+        "en": "This measure directly matches the stated numerator, denominator, and time frame of the objective.",
+        "zh": "该指标直接对应目标规定的分子、分母和时间范围。"
+      },
+      {
+        "en": "Long-term caries change is important but does not directly measure whether the one-year coverage target was reached.",
+        "zh": "长期龋病变化很重要，但不能直接测量一年覆盖目标是否达成。"
+      },
+      {
+        "en": "Posters distributed measure activity, not sealant coverage.",
+        "zh": "海报数量衡量活动量，而非封闭覆盖率。"
+      },
+      {
+        "en": "Waiting-room satisfaction is not aligned with the sealant coverage objective.",
+        "zh": "候诊区满意度与封闭覆盖目标不一致。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "The objective specifies a measurable coverage target, so sealant coverage is the direct process/output indicator."
+  },
+  {
+    "id": 58,
+    "concept": "Validity & Reliability",
+    "stem": "Two calibrated examiners repeatedly score the same gingival findings and obtain nearly identical results, but both consistently use an incorrect diagnostic threshold. Their measurements are:<span class=\"zh\">两名经校准检查者反复评估同一牙龈情况，结果几乎相同，但两人都持续使用错误诊断阈值。他们的测量是：</span>",
+    "choices": [
+      "Reliable but not valid<span class=\"zh\">可靠但无效</span>",
+      "Valid but not reliable<span class=\"zh\">有效但不可靠</span>",
+      "Both valid and reliable<span class=\"zh\">既有效又可靠</span>",
+      "Neither measurable nor reproducible<span class=\"zh\">既不可测量也不可重复</span>"
+    ],
+    "answer": 0,
+    "why": "The scores are reproducible, showing reliability, but the incorrect threshold prevents accurate measurement of the intended condition, reducing validity.",
+    "zh": "评分可重复，说明可靠；但错误阈值不能准确测量目标状况，因此效度不足。",
+    "rationales": [
+      {
+        "en": "Consistency indicates reliability, while systematic inaccuracy indicates poor validity.",
+        "zh": "一致性表示可靠性，系统性不准确表示效度差。"
+      },
+      {
+        "en": "Validity requires accuracy; using the wrong threshold prevents validity.",
+        "zh": "效度要求准确；错误阈值使其不具效度。"
+      },
+      {
+        "en": "High agreement alone does not establish validity.",
+        "zh": "高度一致本身不能证明效度。"
+      },
+      {
+        "en": "The results are clearly measurable and reproducible, so this description is incorrect.",
+        "zh": "结果明显可测且可重复，因此此描述不正确。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "The scores are reproducible, showing reliability, but the incorrect threshold prevents accurate measurement of the intended condition, reducing validity."
+  },
+  {
+    "id": 59,
+    "concept": "Statistical Significance",
+    "stem": "A very large study finds that a new oral-health leaflet improves plaque scores by 0.02 points, with p < 0.001. What is the best interpretation?<span class=\"zh\">一项大型研究发现新口腔健康宣传单使菌斑评分改善0.02分，p < 0.001。最佳解读是什么？</span>",
+    "choices": [
+      "The result is statistically significant, but the clinical importance may be minimal<span class=\"zh\">结果具有统计学意义，但临床重要性可能很小</span>",
+      "The leaflet causes a large clinically important improvement<span class=\"zh\">宣传单造成巨大且临床重要的改善</span>",
+      "The result is not statistically significant<span class=\"zh\">结果无统计学意义</span>",
+      "The p-value proves there is no bias<span class=\"zh\">p值证明不存在偏倚</span>"
+    ],
+    "answer": 0,
+    "why": "A very small effect can be statistically significant in a large sample, so clinical significance must be judged separately.",
+    "zh": "在大样本中极小效应也可具有统计学意义，因此需另行判断临床意义。",
+    "rationales": [
+      {
+        "en": "This distinguishes statistical evidence from the practical size and importance of the effect.",
+        "zh": "此项正确区分统计证据与效应的实际大小和重要性。"
+      },
+      {
+        "en": "A 0.02-point change is not automatically large or clinically meaningful.",
+        "zh": "0.02分变化并不自动表示巨大或有临床意义。"
+      },
+      {
+        "en": "A p-value below 0.001 meets common thresholds for statistical significance.",
+        "zh": "p值低于0.001符合常用统计学显著标准。"
+      },
+      {
+        "en": "A p-value does not rule out bias, confounding, or design problems.",
+        "zh": "p值不能排除偏倚、混杂或设计问题。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "A very small effect can be statistically significant in a large sample, so clinical significance must be judged separately."
+  },
+  {
+    "id": 60,
+    "concept": "Indices",
+    "stem": "A child has 2 decayed primary teeth, 1 primary tooth extracted because of caries, and 3 filled primary teeth. What is the deft score?<span class=\"zh\">一名儿童有2颗龋坏乳牙、1颗因龋拔除乳牙和3颗已充填乳牙。其deft评分是多少？</span>",
+    "choices": [
+      "3<span class=\"zh\">3</span>",
+      "5<span class=\"zh\">5</span>",
+      "6<span class=\"zh\">6</span>",
+      "7<span class=\"zh\">7</span>"
+    ],
+    "answer": 2,
+    "why": "The deft score is d + e + f = 2 + 1 + 3 = 6.",
+    "zh": "deft评分为d + e + f = 2 + 1 + 3 = 6。",
+    "rationales": [
+      {
+        "en": "This counts only the filled teeth.",
+        "zh": "此数值只计算了充填牙。"
+      },
+      {
+        "en": "This omits one component of the index.",
+        "zh": "此数值漏掉了指数中的一个组成部分。"
+      },
+      {
+        "en": "Adding decayed, indicated/extracted due to caries, and filled primary teeth gives 6.",
+        "zh": "将龋坏、因龋拔除和充填乳牙相加得到6。"
+      },
+      {
+        "en": "Seven overcounts one of the components.",
+        "zh": "7重复计算了某一组成部分。"
+      }
+    ],
+    "level": "Board-style",
+    "pearl": "The deft score is d + e + f = 2 + 1 + 3 = 6.",
+    "steps": [
+      "d = 2",
+      "e = 1",
+      "f = 3",
+      "deft = 2 + 1 + 3 = 6"
+    ]
   }
 ];
 window.FULL_BANK=COMMUNITY_BANK;
