@@ -71,3 +71,5 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .question-visual figcaption{padding:.55rem .8rem;text-align:center;font-size:.86rem;opacity:.78}
 .review-visual{display:block;width:100%;max-width:680px;max-height:360px;object-fit:contain;margin:0 auto 1rem;border-radius:14px;background:#111820}
 @media(max-width:640px){.question-visual img{max-height:300px}.review-visual{max-height:280px}}
+
+.visual-error{padding:2rem;text-align:center;font-weight:700;color:#fff;background:#7f1d1d;border-radius:16px}

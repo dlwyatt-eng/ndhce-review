@@ -86,7 +86,7 @@ function startPractice(bank,title='Practice'){
     stem.innerHTML=q.stem; level.textContent=q.level||title;
     data.innerHTML='';
     if(q.image){
-      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}"><figcaption>Visual question / 图像题</figcaption></figure>`;
+      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}" onerror="this.parentElement.innerHTML='<div class=&quot;visual-error&quot;>Visual could not load. Please refresh the page.<br>图像无法加载，请刷新页面。</div>'"><figcaption>Visual question / 图像题</figcaption></figure>`;
     }else{
       data.innerHTML=q.data||'';
     }
@@ -158,7 +158,7 @@ function startExam(bank,minutes=20){
     level.textContent=q.level||'Mock Exam';
     data.innerHTML='';
     if(q.image){
-      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}"><figcaption>Visual question / 图像题</figcaption></figure>`;
+      data.innerHTML=`<figure class="question-visual"><img src="${q.image}" alt="${q.imageAlt||'Question visual'}" onerror="this.parentElement.innerHTML='<div class=&quot;visual-error&quot;>Visual could not load. Please refresh the page.<br>图像无法加载，请刷新页面。</div>'"><figcaption>Visual question / 图像题</figcaption></figure>`;
     }else{
       data.innerHTML=q.data||'';
     }
