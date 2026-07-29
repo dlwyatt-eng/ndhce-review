@@ -49,6 +49,7 @@ function weakestConcepts(limit=4){
     .map(x=>x.name);
 }
 function selectPracticeBank(bank,mode,concept){
+  if(mode==='visual')return bank.filter(q=>q.image);
   if(mode==='concept')return bank.filter(q=>q.concept===concept);
   if(mode==='weak'){
     const weak=weakestConcepts(4);
