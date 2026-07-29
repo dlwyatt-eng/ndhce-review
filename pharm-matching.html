@@ -1,15 +1,19 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Medication Matching</title><link rel="stylesheet" href="pharm-styles.css?v=4"></head><body><div class="shell">
-<header><div><p class="tag">PHARMACOLOGY MEMORY LAB</p><h1>🧩 Medication Matching</h1><p class="sub">Match medicines with their drug classes, oral effects, emergency uses, and key dental implications.<span class="zh">将药物与药物类别、口腔影响、急救用途及牙科注意事项配对。</span></p></div><div class="nav"><a class="button secondary" href="pharm-practice.html">← Practice</a><a class="button secondary" href="pharmacology.html">Hub</a></div></header>
+<header><div><p class="tag">PHARMACOLOGY MEMORY LAB</p><h1>🧩 Medication Matching</h1><p class="sub">Match medicines with classes, brand names, contraindications, interactions, oral effects, emergency uses, and clinical precautions.<span class="zh">将药物与类别、商品名、禁忌证、相互作用、口腔影响、急救用途及临床注意事项配对。</span></p></div><div class="nav"><a class="button secondary" href="pharm-practice.html">← Practice</a><a class="button secondary" href="pharmacology.html">Hub</a></div></header>
 <section class="card" id="setup">
 <h2>Choose a matching set</h2><div class="match-mode-grid">
 <button class="match-mode" data-mode="class"><b>Drug → Category</b><span>药物 → 类别</span><small>Examples, drug families, and core classifications</small></button>
 <button class="match-mode" data-mode="oral"><b>Drug → Oral Effect</b><span>药物 → 口腔影响</span><small>Adverse effects and preventive implications</small></button>
 <button class="match-mode" data-mode="emergency"><b>Emergency Drug → Purpose</b><span>急救药物 → 用途</span><small>Chairside emergencies and first-line uses</small></button>
 <button class="match-mode" data-mode="dental"><b>Drug → Dental Implication</b><span>药物 → 牙科注意事项</span><small>Bleeding, interactions, precautions, and referrals</small></button>
+<button class="match-mode" data-mode="brand"><b>Brand ↔ Generic</b><span>商品名 ↔ 通用名</span><small>Common names seen in medication histories</small></button>
+<button class="match-mode" data-mode="contra"><b>Drug → Contraindication</b><span>药物 → 禁忌证</span><small>When a drug may be unsafe or inappropriate</small></button>
+<button class="match-mode" data-mode="interaction"><b>Drug → Major Interaction</b><span>药物 → 主要相互作用</span><small>High-yield combinations and clinical consequences</small></button>
+<button class="match-mode" data-mode="precaution"><b>Drug → Clinical Precaution</b><span>药物 → 临床注意事项</span><small>Renal, hepatic, bleeding, infection, and appointment concerns</small></button>
 <button class="match-mode featured" data-mode="mixed"><b>Mixed Board Review</b><span>综合执照考试复习</span><small>All categories shuffled together</small></button>
 </div>
-<div class="match-options"><label>Pairs per round <select id="pairCount"><option>6</option><option selected>8</option><option>10</option></select></label><button id="startBtn" class="primary" disabled>Start matching</button></div>
+<div class="match-options"><label>Pairs per round <select id="pairCount"><option>6</option><option selected>8</option><option>10</option><option>12</option></select></label><button id="startBtn" class="primary" disabled>Start matching</button></div>
 </section>
 <section id="game" class="hidden">
 <div class="card"><div class="match-status"><div><span id="roundTitle" class="level"></span><h2 id="instruction">Select a medicine, then select its match.</h2></div><div class="match-score"><b id="matchedCount">0/0</b><span id="attemptCount">0 attempts</span></div></div><div class="progressbar"><div id="matchBar"></div></div></div>
