@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Cervical burnout</title>
+<desc id="desc">Simplified bitewing showing diffuse cervical radiolucency that can mimic root caries.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<rect x="75" y="45" width="570" height="320" rx="20" fill="#252b32"/>
+<g fill="#d9dde2">
+  <path d="M150 75 C115 130,125 220,170 248 L183 330 L205 258 L227 330 L240 248 C285 220,295 130,260 75 Z"/>
+  <path d="M330 75 C295 130,305 220,350 248 L363 330 L385 258 L407 330 L420 248 C465 220,475 130,440 75 Z"/>
+</g>
+<g fill="#080b0e" opacity=".55">
+  <ellipse cx="250" cy="220" rx="42" ry="28"/>
+  <ellipse cx="330" cy="220" rx="42" ry="28"/>
+</g>
+<text x="360" y="398" text-anchor="middle" fill="#e5e7eb" font-size="22">Diffuse radiolucency near the CEJ</text>
+
+</svg>

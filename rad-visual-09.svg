@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Elongation and foreshortening comparison</title>
+<desc id="desc">Two simplified periapical images, one elongated and one foreshortened.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<g transform="translate(70,55)">
+  <rect width="260" height="300" rx="18" fill="#252b32"/>
+  <path d="M90 35 C60 90,65 180,100 215 L112 285 L130 230 L148 285 L160 215 C195 180,200 90,170 35 Z" fill="#d9dde2"/>
+  <text x="130" y="285" text-anchor="middle" fill="#101418" font-size="18">Long roots</text>
+  <text x="130" y="328" text-anchor="middle" fill="#e5e7eb" font-size="21">Image A</text>
+</g>
+<g transform="translate(390,55)">
+  <rect width="260" height="300" rx="18" fill="#252b32"/>
+  <path d="M85 60 C55 105,60 165,100 190 L112 240 L130 205 L148 240 L160 190 C200 165,205 105,175 60 Z" fill="#d9dde2"/>
+  <text x="130" y="270" text-anchor="middle" fill="#e5e7eb" font-size="18">Short roots</text>
+  <text x="130" y="328" text-anchor="middle" fill="#e5e7eb" font-size="21">Image B</text>
+</g>
+
+</svg>

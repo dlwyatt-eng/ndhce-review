@@ -65,3 +65,9 @@ table{width:100%;border-collapse:collapse}.table-wrap{overflow:auto}th,td{paddin
 .case-box{padding:14px;border-left:4px solid var(--accent2);background:#f7fbff;border-radius:10px;margin:12px 0}
 .exam-note{padding:13px;border-radius:12px;background:#fff8dd;border-left:4px solid #d8a600}
 .hidden{display:none!important}
+
+.question-visual{margin:0 0 1.2rem;padding:0;background:#111820;border:1px solid rgba(255,255,255,.12);border-radius:18px;overflow:hidden}
+.question-visual img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;background:#111820}
+.question-visual figcaption{padding:.55rem .8rem;text-align:center;font-size:.86rem;opacity:.78}
+.review-visual{display:block;width:100%;max-width:680px;max-height:360px;object-fit:contain;margin:0 auto 1rem;border-radius:14px;background:#111820}
+@media(max-width:640px){.question-visual img{max-height:300px}.review-visual{max-height:280px}}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Palatoglossal air space</title>
+<desc id="desc">Simplified panoramic diagram showing a broad dark band over the maxillary roots.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<path d="M75 230 Q360 65 645 230" fill="none" stroke="#d9dde2" stroke-width="30" stroke-linecap="round"/>
+<path d="M135 175 Q360 65 585 175 Q360 145 135 175 Z" fill="#050709" opacity=".92"/>
+<text x="360" y="120" text-anchor="middle" fill="#f4f4f5" font-size="18">Broad radiolucent band</text>
+<path d="M360 135 L360 170" stroke="#f4f4f5" stroke-width="4" marker-end="url(#arr)"/>
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#f4f4f5"/></marker></defs>
+<text x="360" y="385" text-anchor="middle" fill="#e5e7eb" font-size="22">Maxillary apices obscured by air space</text>
+
+</svg>

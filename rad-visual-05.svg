@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Cone-cut error</title>
+<desc id="desc">Simplified radiograph with a sharply defined clear semicircular area.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<rect x="80" y="50" width="560" height="320" rx="20" fill="#2a3038"/>
+<g fill="#d9dde2" opacity=".9">
+  <path d="M150 95 C120 150,130 265,170 320 C190 345,220 330,226 295 L238 220 L250 295 C256 330,286 345,306 320 C346 265,356 150,326 95 Z"/>
+  <path d="M330 95 C300 150,310 265,350 320 C370 345,400 330,406 295 L418 220 L430 295 C436 330,466 345,486 320 C526 265,536 150,506 95 Z"/>
+</g>
+<path d="M80 50 H300 A220 220 0 0 0 80 270 Z" fill="#f3f4f6" opacity=".96"/>
+<path d="M80 50 H300 A220 220 0 0 0 80 270" fill="none" stroke="#ffffff" stroke-width="5"/>
+<text x="360" y="398" text-anchor="middle" fill="#e5e7eb" font-size="22">Sharply defined unexposed area</text>
+
+</svg>

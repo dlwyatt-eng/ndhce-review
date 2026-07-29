@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Mental foramen superimposition</title>
+<desc id="desc">Simplified periapical image with a round radiolucency near a mandibular premolar apex.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<rect x="70" y="45" width="580" height="320" rx="20" fill="#252b32"/>
+<g fill="#d9dde2">
+  <path d="M180 80 C150 135,160 225,205 255 L220 330 L240 265 L260 330 L275 255 C320 225,330 135,300 80 Z"/>
+  <path d="M340 80 C310 135,320 225,365 255 L380 330 L400 265 L420 330 L435 255 C480 225,490 135,460 80 Z"/>
+</g>
+<circle cx="405" cy="285" r="36" fill="#050709" opacity=".9"/>
+<circle cx="405" cy="285" r="42" fill="none" stroke="#f8fafc" stroke-width="4" stroke-dasharray="9 9"/>
+<text x="360" y="395" text-anchor="middle" fill="#e5e7eb" font-size="22">Round radiolucency near a vital premolar apex</text>
+
+</svg>

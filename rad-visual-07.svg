@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+<title id="title">Overlapped posterior contacts</title>
+<desc id="desc">Simplified bitewing diagram showing overlapped interproximal contacts.</desc>
+<rect width="720" height="420" rx="24" fill="#151a20"/>
+
+<g fill="#d9dde2" stroke="#aab2ba" stroke-width="3">
+  <path d="M70 80 C48 135,50 245,92 300 C112 326,145 310,151 274 L164 202 L177 274 C183 310,216 326,236 300 C278 245,280 135,258 80 Z"/>
+  <path d="M230 76 C208 132,210 244,252 300 C272 326,305 310,311 274 L324 202 L337 274 C343 310,376 326,396 300 C438 244,440 132,418 76 Z"/>
+  <path d="M390 80 C368 135,370 245,412 300 C432 326,465 310,471 274 L484 202 L497 274 C503 310,536 326,556 300 C598 245,600 135,578 80 Z"/>
+</g>
+<g fill="#0e1318" opacity=".78">
+  <ellipse cx="244" cy="150" rx="42" ry="76"/>
+  <ellipse cx="404" cy="150" rx="42" ry="76"/>
+</g>
+<path d="M210 130 C250 158,290 158,330 130" fill="none" stroke="#f5f7f9" stroke-width="6" stroke-dasharray="10 10"/>
+<path d="M370 130 C410 158,450 158,490 130" fill="none" stroke="#f5f7f9" stroke-width="6" stroke-dasharray="10 10"/>
+<text x="360" y="390" text-anchor="middle" fill="#e5e7eb" font-size="22">Posterior bitewing, contacts overlapped</text>
+
+</svg>
