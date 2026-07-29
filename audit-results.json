@@ -1,0 +1,70 @@
+{
+  "modules": {
+    "Community Oral Health & Research": {
+      "file": "community-data.js",
+      "questions": 60,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Law & Ethics": {
+      "file": "law-data.js",
+      "questions": 60,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Medical Emergencies": {
+      "file": "med-data.js",
+      "questions": 55,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Oral Pathology": {
+      "file": "path-data.js",
+      "questions": 70,
+      "visual_questions": 10,
+      "errors": [],
+      "warnings": []
+    },
+    "Periodontology": {
+      "file": "perio-data.js",
+      "questions": 60,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Pharmacology": {
+      "file": "pharm-data.js",
+      "questions": 66,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Process of Care": {
+      "file": "poc-data.js",
+      "questions": 55,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    },
+    "Radiology": {
+      "file": "radiology-data.js",
+      "questions": 70,
+      "visual_questions": 10,
+      "errors": [],
+      "warnings": []
+    },
+    "Special Needs": {
+      "file": "sn-data.js",
+      "questions": 60,
+      "visual_questions": 0,
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "broken_local_links": [],
+  "errors": [],
+  "warnings": []
+}
