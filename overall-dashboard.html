@@ -1,1 +1,70 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Overall Performance Dashboard</title><link rel="stylesheet" href="indices-styles.css"><link rel="stylesheet" href="mixed-styles.css"></head><body onload="renderOverall()"><div class="shell"><header><div><p class="tag">PROGRESS CENTRE</p><h1>Overall Performance Dashboard</h1><p class="sub">One view of practice activity across the complete review site.<span class="zh">集中查看整个复习网站的练习表现。</span></p></div><a class="button secondary" href="index.html">Home</a></header><section class="card"><div id="summary" class="stats"></div></section><section class="card"><h2>Subject performance</h2><div id="modules" class="overall-grid"></div></section><section class="card"><h2>Recent mixed mock exams</h2><div id="mixed"></div><div class="hero-actions"><a class="button primary" href="mixed-exam.html">Start mixed mock</a></div></section><section class="card"><h2>Weakest mixed-exam subjects</h2><div id="weak"></div></section></div><script src="overall-dashboard.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NDHCE Progress Centre</title>
+<link rel="stylesheet" href="indices-styles.css">
+<link rel="stylesheet" href="mixed-styles.css">
+<style>
+.toolbar{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.progress-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem}
+.progress-card{border:1px solid rgba(120,120,120,.25);border-radius:16px;padding:1rem}
+.progress-card h3{margin:.1rem 0 .5rem}
+.progress-card .big{font-size:2rem;font-weight:800}
+.progress-table{width:100%;border-collapse:collapse}
+.progress-table th,.progress-table td{text-align:left;padding:.65rem;border-bottom:1px solid rgba(120,120,120,.2)}
+.bar-track{height:10px;border-radius:99px;background:rgba(120,120,120,.18);overflow:hidden}
+.bar-fill{height:100%;background:var(--accent,#5b7cfa)}
+.notice{padding:1rem;border-radius:14px;background:rgba(91,124,250,.10)}
+@media(max-width:650px){.progress-table{font-size:.86rem}.progress-table th:nth-child(4),.progress-table td:nth-child(4){display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header>
+  <div>
+    <p class="tag">PROGRESS CENTRE</p>
+    <h1>Meng’s NDHCE Progress</h1>
+    <p class="sub">Attempts, weak areas, visual performance, and session history.<span class="zh">练习记录、薄弱领域、图像题表现及学习历史。</span></p>
+  </div>
+  <a class="button secondary" href="index.html">Home</a>
+</header>
+
+<section class="card">
+  <div id="summary" class="progress-grid"></div>
+  <div class="toolbar">
+    <button class="button primary" id="exportJson">Export JSON backup</button>
+    <button class="button secondary" id="exportCsv">Export CSV</button>
+    <button class="button secondary" id="clearHistory">Clear detailed history</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Performance by module</h2>
+  <div id="modules"></div>
+</section>
+
+<section class="card">
+  <h2>Current weak areas</h2>
+  <div id="weakAreas"></div>
+</section>
+
+<section class="card">
+  <h2>Recent sessions</h2>
+  <div id="sessions"></div>
+</section>
+
+<section class="card">
+  <h2>How tracking works</h2>
+  <div class="notice">
+    <p>The site now records question ID, module, concept, visual status, selected answer, correct answer, date, first attempt, and session score in this browser.</p>
+    <p class="zh">网站现在会在此浏览器中记录题目编号、模块、主题、是否为图像题、所选答案、正确答案、日期、首次作答及每次练习成绩。</p>
+    <p><strong>Important:</strong> browser storage can be erased. Export a JSON backup periodically.</p>
+  </div>
+</section>
+</div>
+<script src="progress-tracker.js"></script>
+<script src="progress-dashboard.js"></script>
+</body>
+</html>

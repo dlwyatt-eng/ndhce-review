@@ -7,4 +7,4 @@
 window.FULL_BANK=window.PHARM_BANK;const p=new URLSearchParams(location.search),mode=p.get('mode')||'random',concept=p.get('concept')||'';
 const names={random:'Random Practice',weak:'Review Weak Areas',concept:'Practice: '+concept};
 document.getElementById('modeTitle').textContent=names[mode]||'Practice';startPractice(selectPracticeBank(window.FULL_BANK,mode,concept),names[mode]||'Practice');
-</script></body></html>
+</script><script src="progress-tracker.js"></script></body></html>
