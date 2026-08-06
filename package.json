@@ -3,9 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/p0-regression.mjs && node tests/p1-progress.mjs"
+    "dev": "vite",
+    "test": "node tests/p0-regression.mjs && node tests/p1-progress.mjs && node tests/p2-medications.mjs"
   },
   "devDependencies": {
-    "jsdom": "^26.1.0"
+    "jsdom": "^26.1.0",
+    "vite": "^8.2.0"
   }
 }
