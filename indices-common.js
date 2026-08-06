@@ -67,7 +67,7 @@ function renderMiniStats(id){
   }).join('');
 }
 function startPractice(bank,title='Practice'){
-  let order=bank, i=0, score=0, locked=false;
+  let order=NDHCE_CHOICES.balanceBank(bank), i=0, score=0, locked=false;
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     feedback=document.getElementById('feedback'), next=document.getElementById('next'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
@@ -134,7 +134,7 @@ function startPractice(bank,title='Practice'){
   load();
 }
 function startExam(bank,minutes=20){
-  let order=shuffle(bank).slice(0,20), i=0, answers={}, remaining=minutes*60, timerId;
+  let order=NDHCE_CHOICES.balanceBank(shuffle(bank).slice(0,20)), i=0, answers={}, remaining=minutes*60, timerId;
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
     level=document.getElementById('level'), data=document.getElementById('data'),

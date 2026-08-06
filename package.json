@@ -1,0 +1,11 @@
+{
+  "name": "ndhce-review",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/p0-regression.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

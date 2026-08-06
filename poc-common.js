@@ -85,7 +85,7 @@ function renderMiniStats(id){
   }).join('');
 }
 function startPractice(bank,title='Practice'){
-  let order=bank, i=0, score=0, locked=false;
+  let order=NDHCE_CHOICES.balanceBank(bank), i=0, score=0, locked=false;
   const trackingStartedAt=Date.now(), trackingSession=trackingSessionId('practice');
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     feedback=document.getElementById('feedback'), next=document.getElementById('next'),
@@ -148,14 +148,15 @@ function startPractice(bank,title='Practice'){
     document.getElementById('quiz').innerHTML=`<div class="card center">
       <div class="score-big">${score}/${order.length}</div><h2>${title} complete</h2>
       <p>${pct(score,order.length)}% correct</p>
-      <a class="button primary" href="indices-dashboard.html">View dashboard</a>
-      <a class="button secondary" href="indices-practice.html">Choose another practice</a>
-      <a class="button secondary" href="indices.html">Back to hub</a></div>`;
+      <a class="button primary" href="poc-dashboard.html">View dashboard</a>
+      <a class="button secondary" href="poc-practice.html">Choose another practice</a>
+      <a class="button secondary" href="process-of-care.html">Back to hub</a></div>`;
   }
   load();
 }
 function startExam(bank,minutes=20){
-  let order=shuffle(bank).slice(0,20), i=0, answers={}, remaining=minutes*60, timerId;
+  let order=NDHCE_CHOICES.balanceBank(shuffle(bank).slice(0,20)), i=0, answers={}, remaining=minutes*60, timerId;
+  const trackingStartedAt=Date.now(), trackingSession=trackingSessionId('exam');
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
     level=document.getElementById('level'), data=document.getElementById('data'),
@@ -201,7 +202,7 @@ function startExam(bank,minutes=20){
     }).join('');
     document.getElementById('exam').innerHTML=`<div class="card center"><div class="score-big">${correct}/${order.length}</div>
     <h2>Mock Exam Complete</h2><p>${pct(correct,order.length)}% correct</p>
-    <a class="button primary" href="indices-dashboard.html">View dashboard</a></div>
+    <a class="button primary" href="poc-dashboard.html">View dashboard</a></div>
     <section class="card"><h2>Answer Review</h2>${review}</section>`;
   }
   timer.textContent=`${minutes}:00`; timerId=setInterval(tick,1000); load();
