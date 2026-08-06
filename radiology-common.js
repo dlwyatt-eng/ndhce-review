@@ -8,7 +8,7 @@ function trackAttempt(section,q,selectedIndex,correct,sessionId){
   NDHCE_TRACKER.recordAttempt({
     module:TRACKING_MODULE,section,sessionId,
     questionId:q.id,concept:q.concept||'Mixed',visual:Boolean(q.image),
-    correct,selectedIndex,correctIndex:q.answer,stem:q.stem,firstAttempt:true
+    correct,selectedIndex,correctIndex:q.answer,stem:q.stem
   });
 }
 function trackSession(section,mode,total,correct,sessionId,startedAt){
@@ -30,6 +30,17 @@ function emptyProgress(){
   };
 }
 function getProgress(){
+  if(window.NDHCE_TRACKER)return NDHCE_TRACKER.getModuleProgress(TRACKING_MODULE);
+  try{
+    const unified=JSON.parse(localStorage.getItem('ndhce_progress_v2'));
+    if(unified&&unified.version===2&&Array.isArray(unified.attempts)){
+      const p=emptyProgress();
+      const detailed=unified.attempts.filter(a=>a.module===TRACKING_MODULE);
+      detailed.forEach(a=>{const section=a.section==='exam'||a.section==='mixed-exam'?'exam':'practice';p.sections[section].done++;if(a.correct)p.sections[section].correct++;const c=a.concept||'Mixed';p.concepts[c]=p.concepts[c]||{done:0,correct:0};p.concepts[c].done++;if(a.correct)p.concepts[c].correct++;});
+      if(!detailed.length&&unified.legacySummaries&&unified.legacySummaries[TRACKING_MODULE])return unified.legacySummaries[TRACKING_MODULE];
+      return p;
+    }
+  }catch(e){}
   try{return JSON.parse(localStorage.getItem(KEY))||emptyProgress()}
   catch(e){return emptyProgress()}
 }
@@ -53,6 +64,8 @@ function record(section,correct,concept){
 function resetRadiologyProgress(){
   if(confirm('Reset all Radiology progress? / 重置所有法律与伦理进度？')){
     localStorage.removeItem(KEY);
+    if(window.NDHCE_TRACKER)NDHCE_TRACKER.clearModule(TRACKING_MODULE);
+    else try{const data=JSON.parse(localStorage.getItem('ndhce_progress_v2'));if(data&&data.version===2){data.attempts=(data.attempts||[]).filter(x=>x.module!==TRACKING_MODULE);data.sessions=(data.sessions||[]).filter(x=>x.module!==TRACKING_MODULE);data.activities=(data.activities||[]).filter(x=>x.module!==TRACKING_MODULE);if(data.legacySummaries)delete data.legacySummaries[TRACKING_MODULE];localStorage.setItem('ndhce_progress_v2',JSON.stringify(data));}}catch(e){}
     location.reload();
   }
 }
@@ -70,6 +83,7 @@ function selectPracticeBank(bank,mode,concept){
   if(mode==='visual')return bank.filter(q=>q.image);
   if(mode==='concept')return bank.filter(q=>q.concept===concept);
   if(mode==='weak'){
+    if(window.NDHCE_TRACKER)return NDHCE_TRACKER.selectAdaptiveBank(TRACKING_MODULE,bank,18);
     const weak=weakestConcepts(4);
     if(!weak.length)return shuffle(bank).slice(0,12);
     const selected=bank.filter(q=>weak.includes(q.concept));
@@ -209,10 +223,7 @@ function startExam(bank,minutes=20){
     trackSession('exam','Mock Exam',order.length,correct,trackingSession,trackingStartedAt);
     const review=order.map((q,n)=>{
       const user=answers[q.id];
-      return `<div class="review-card">${q.image?`<img class="review-visual" src="${q.image}" alt="${q.imageAlt||'Question visual'}">`:''}<h3>${n+1}. ${q.stem}</h3>
-      <p><b>Your answer:</b> ${user===undefined?'Not answered':String.fromCharCode(65+user)+'. '+q.choices[user]}</p>
-      <p><b>Correct answer:</b> ${String.fromCharCode(65+q.answer)}. ${q.choices[q.answer]}</p>
-      <p>${q.why}</p><span class="zh">${q.zh}</span></div>`;
+      return NDHCE_TRACKER.renderQuestionReview(q,user,n+1,TRACKING_MODULE);
     }).join('');
     document.getElementById('exam').innerHTML=`<div class="card center"><div class="score-big">${correct}/${order.length}</div>
     <h2>Mock Exam Complete</h2><p>${pct(correct,order.length)}% correct</p>

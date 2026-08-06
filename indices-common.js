@@ -1,5 +1,9 @@
 
 const KEY='ndhce_indices_progress_v4';
+const TRACKING_MODULE='Indices';
+function trackingSessionId(section){return window.NDHCE_TRACKER?NDHCE_TRACKER.uid(section):section+'_'+Date.now();}
+function trackAttempt(section,q,selectedIndex,correct,sessionId){if(window.NDHCE_TRACKER)NDHCE_TRACKER.recordAttempt({module:TRACKING_MODULE,section,sessionId,questionId:q.id,concept:q.concept||'Mixed',visual:Boolean(q.image),correct,selectedIndex,correctIndex:q.answer,stem:q.stem});}
+function trackSession(section,mode,total,correct,sessionId,startedAt){if(window.NDHCE_TRACKER)NDHCE_TRACKER.recordSession({module:TRACKING_MODULE,section,mode,total,correct,sessionId,durationSeconds:Math.max(0,Math.round((Date.now()-startedAt)/1000))});}
 
 function emptyProgress(){
   return {
@@ -12,6 +16,17 @@ function emptyProgress(){
   };
 }
 function getProgress(){
+  if(window.NDHCE_TRACKER)return NDHCE_TRACKER.getModuleProgress(TRACKING_MODULE);
+  try{
+    const unified=JSON.parse(localStorage.getItem('ndhce_progress_v2'));
+    if(unified&&unified.version===2&&Array.isArray(unified.attempts)){
+      const p=emptyProgress();
+      const detailed=unified.attempts.filter(a=>a.module===TRACKING_MODULE);
+      detailed.forEach(a=>{const section=a.section==='exam'||a.section==='mixed-exam'?'exam':'practice';p.sections[section].done++;if(a.correct)p.sections[section].correct++;const c=a.concept||'Mixed';p.concepts[c]=p.concepts[c]||{done:0,correct:0};p.concepts[c].done++;if(a.correct)p.concepts[c].correct++;});
+      if(!detailed.length&&unified.legacySummaries&&unified.legacySummaries[TRACKING_MODULE])return unified.legacySummaries[TRACKING_MODULE];
+      return p;
+    }
+  }catch(e){}
   try{return JSON.parse(localStorage.getItem(KEY))||emptyProgress()}
   catch(e){return emptyProgress()}
 }
@@ -35,6 +50,8 @@ function record(section,correct,concept){
 function resetIndicesProgress(){
   if(confirm('Reset all Indices progress? / 重置所有指数进度和书签？')){
     localStorage.removeItem(KEY);
+    if(window.NDHCE_TRACKER)NDHCE_TRACKER.clearModule(TRACKING_MODULE);
+    else try{const data=JSON.parse(localStorage.getItem('ndhce_progress_v2'));if(data&&data.version===2){data.attempts=(data.attempts||[]).filter(x=>x.module!==TRACKING_MODULE);data.sessions=(data.sessions||[]).filter(x=>x.module!==TRACKING_MODULE);data.activities=(data.activities||[]).filter(x=>x.module!==TRACKING_MODULE);if(data.legacySummaries)delete data.legacySummaries[TRACKING_MODULE];localStorage.setItem('ndhce_progress_v2',JSON.stringify(data));}}catch(e){}
     location.reload();
   }
 }
@@ -51,6 +68,7 @@ function weakestConcepts(limit=4){
 function selectPracticeBank(bank,mode,concept){
   if(mode==='concept')return bank.filter(q=>q.concept===concept);
   if(mode==='weak'){
+    if(window.NDHCE_TRACKER)return NDHCE_TRACKER.selectAdaptiveBank(TRACKING_MODULE,bank,18);
     const weak=weakestConcepts(4);
     if(!weak.length)return shuffle(bank).slice(0,12);
     const selected=bank.filter(q=>weak.includes(q.concept));
@@ -68,6 +86,7 @@ function renderMiniStats(id){
 }
 function startPractice(bank,title='Practice'){
   let order=NDHCE_CHOICES.balanceBank(bank), i=0, score=0, locked=false;
+  const trackingStartedAt=Date.now(),trackingSession=trackingSessionId('practice');
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     feedback=document.getElementById('feedback'), next=document.getElementById('next'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
@@ -95,6 +114,7 @@ function startPractice(bank,title='Practice'){
     if(locked)return; locked=true;
     const q=order[i], correct=idx===q.answer;
     if(correct)score++; record('practice',correct,q.concept||'Mixed');
+    trackAttempt('practice',q,idx,correct,trackingSession);
     [...choices.children].forEach((b,j)=>{
       b.disabled=true;
       if(j===q.answer)b.classList.add('correct');
@@ -123,6 +143,7 @@ function startPractice(bank,title='Practice'){
   }
   next.onclick=()=>{i++;if(i<order.length)load();else finish()};
   function finish(){
+    trackSession('practice',title,order.length,score,trackingSession,trackingStartedAt);
     bar.style.width='100%';
     document.getElementById('quiz').innerHTML=`<div class="card center">
       <div class="score-big">${score}/${order.length}</div><h2>${title} complete</h2>
@@ -135,6 +156,7 @@ function startPractice(bank,title='Practice'){
 }
 function startExam(bank,minutes=20){
   let order=NDHCE_CHOICES.balanceBank(shuffle(bank).slice(0,20)), i=0, answers={}, remaining=minutes*60, timerId;
+  const trackingStartedAt=Date.now(),trackingSession=trackingSessionId('exam');
   const stem=document.getElementById('stem'), choices=document.getElementById('choices'),
     counter=document.getElementById('counter'), bar=document.getElementById('bar'),
     level=document.getElementById('level'), data=document.getElementById('data'),
@@ -168,13 +190,12 @@ function startExam(bank,minutes=20){
       const ok=answers[q.id]===q.answer;
       if(ok)correct++;
       record('exam',ok,q.concept||'Mixed');
+      trackAttempt('exam',q,answers[q.id],ok,trackingSession);
     });
+    trackSession('exam','Mock Exam',order.length,correct,trackingSession,trackingStartedAt);
     const review=order.map((q,n)=>{
       const user=answers[q.id];
-      return `<div class="review-card"><h3>${n+1}. ${q.stem}</h3>
-      <p><b>Your answer:</b> ${user===undefined?'Not answered':String.fromCharCode(65+user)+'. '+q.choices[user]}</p>
-      <p><b>Correct answer:</b> ${String.fromCharCode(65+q.answer)}. ${q.choices[q.answer]}</p>
-      <p>${q.why}</p><span class="zh">${q.zh}</span></div>`;
+      return NDHCE_TRACKER.renderQuestionReview(q,user,n+1,TRACKING_MODULE);
     }).join('');
     document.getElementById('exam').innerHTML=`<div class="card center"><div class="score-big">${correct}/${order.length}</div>
     <h2>Mock Exam Complete</h2><p>${pct(correct,order.length)}% correct</p>

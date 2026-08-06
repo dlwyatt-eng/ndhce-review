@@ -90,7 +90,7 @@ const MATCH_BANK = [
 
 ];
 
-let selectedMode=null, currentPairs=[], leftSelected=null, rightSelected=null, matched=0, attempts=0;
+let selectedMode=null, currentPairs=[], leftSelected=null, rightSelected=null, matched=0, attempts=0, matchingStartedAt=0;
 const $=id=>document.getElementById(id);
 const shuffleMatch=a=>[...a].sort(()=>Math.random()-.5);
 
@@ -101,6 +101,7 @@ document.querySelectorAll('.match-mode').forEach(btn=>btn.addEventListener('clic
 $('startBtn').addEventListener('click',startRound);$('resetRound').addEventListener('click',renderRound);$('newSet').addEventListener('click',showSetup);$('againBtn').addEventListener('click',showSetup);
 
 function startRound(){
+  matchingStartedAt=Date.now();
   const count=Number($('pairCount').value);
   const pool=selectedMode==='mixed'?MATCH_BANK:MATCH_BANK.filter(x=>x.mode===selectedMode);
   currentPairs=shuffleMatch(pool).slice(0,Math.min(count,pool.length));
@@ -137,7 +138,6 @@ function checkPair(){
     matched++;[leftSelected,rightSelected].forEach(x=>{x.classList.remove('selected');x.classList.add('matched');x.disabled=true});
     $('matchFeedback').className='card match-feedback good';
     $('matchFeedback').innerHTML=`<h3>✅ Match / 配对正确</h3><b>${item.left} → ${item.right}</b><span class="zh">${item.leftZh} → ${item.rightZh}</span><p>${item.explain}</p><span class="zh">${item.explainZh}</span>`;
-    record('practice',true,'Medication Matching');
     leftSelected=rightSelected=null;
     updateStatus();
     if(matched===currentPairs.length)setTimeout(finishRound,650);
@@ -146,7 +146,6 @@ function checkPair(){
     [a,b].forEach(x=>x.classList.add('error'));
     $('matchFeedback').className='card match-feedback bad';
     $('matchFeedback').innerHTML='<h3>Not a match yet / 尚未配对</h3><p>Try again. Compare the drug family, mechanism, oral effect, or clinical purpose.</p><span class="zh">请再试一次。比较药物类别、作用机制、口腔影响或临床用途。</span>';
-    record('practice',false,'Medication Matching');
     setTimeout(()=>{[a,b].forEach(x=>x.classList.remove('selected','error'));leftSelected=rightSelected=null},500);
     updateStatus();
   }
@@ -159,6 +158,7 @@ function updateStatus(){
 function finishRound(){
   $('game').classList.add('hidden');$('finish').classList.remove('hidden');
   const accuracy=attempts?Math.round(currentPairs.length/attempts*100):100;
+  if(window.NDHCE_TRACKER)NDHCE_TRACKER.recordActivity({module:'Pharmacology',type:'matching',mode:selectedMode,total:currentPairs.length,correct:currentPairs.length,attempts,percent:accuracy,details:{pairIds:currentPairs.map(x=>x.id),durationSeconds:Math.max(0,Math.round((Date.now()-matchingStartedAt)/1000))}});
   $('finalScore').textContent=`${currentPairs.length} matched`;
   $('finalMessage').innerHTML=`Accuracy: <b>${accuracy}%</b> across ${attempts} attempts.<span class="zh">${attempts}次尝试，准确率为<b>${accuracy}%</b>。</span>`;
 }

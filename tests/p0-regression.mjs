@@ -129,13 +129,16 @@ async function checkSubjectExams() {
   ];
 
   for (const [file, length, dashboard] of examPages) {
-    const {dom} = await openPage(file);
+    const {dom, storage} = await openPage(file);
     const document = dom.window.document;
     assert.match(document.querySelector('#counter').textContent, new RegExp(`of ${length}$`), `${file} displayed the wrong exam length`);
     document.querySelector('#choices button').click();
     document.querySelector('#finish').click();
     assert.match(document.querySelector('#exam').textContent, /Mock Exam Complete/, `${file} did not submit`);
     assert.ok(document.querySelector(`#exam a[href="${dashboard}"]`), `${file} did not link to its own dashboard`);
+    const unified = JSON.parse(storage.get('ndhce_progress_v2'));
+    assert.equal(unified.attempts.length, length, `${file} should save every exam answer to unified progress`);
+    assert.equal(unified.sessions.length, 1, `${file} should save one unified exam session`);
     dom.window.close();
   }
 }
@@ -197,6 +200,9 @@ async function checkMixedExamIdentity() {
   const saved = JSON.parse(storage.get('ndhce_mixed_progress_v2'));
   assert.equal(saved.attempts[0].schemaVersion, 2, 'Mixed results should use the collision-safe schema');
   assert.equal(saved.attempts[0].done, 30, 'Mixed result should store the complete exam length');
+  const unified = JSON.parse(storage.get('ndhce_progress_v2'));
+  assert.equal(unified.attempts.length, 30, 'Mixed exam should save question-level unified attempts');
+  assert.equal(unified.sessions[0].section, 'mixed-exam', 'Mixed exam should save a unified session');
   dom.window.close();
 }
 

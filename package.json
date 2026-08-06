@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/p0-regression.mjs"
+    "test": "node tests/p0-regression.mjs && node tests/p1-progress.mjs"
   },
   "devDependencies": {
     "jsdom": "^26.1.0"

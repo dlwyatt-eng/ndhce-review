@@ -17,6 +17,8 @@
 .bar-track{height:10px;border-radius:99px;background:rgba(120,120,120,.18);overflow:hidden}
 .bar-fill{height:100%;background:var(--accent,#5b7cfa)}
 .notice{padding:1rem;border-radius:14px;background:rgba(91,124,250,.10)}
+.notice.success{background:rgba(25,135,84,.12)}.notice.error{background:rgba(220,53,69,.12)}
+.recommendation{border:2px solid var(--accent,#5b7cfa);background:rgba(91,124,250,.08)}
 @media(max-width:650px){.progress-table{font-size:.86rem}.progress-table th:nth-child(4),.progress-table td:nth-child(4){display:none}}
 </style>
 </head>
@@ -35,10 +37,15 @@
   <div id="summary" class="progress-grid"></div>
   <div class="toolbar">
     <button class="button primary" id="exportJson">Export JSON backup</button>
+    <button class="button secondary" id="importJson">Restore JSON backup</button>
+    <input class="hidden" type="file" id="importFile" accept="application/json,.json">
     <button class="button secondary" id="exportCsv">Export CSV</button>
-    <button class="button secondary" id="clearHistory">Clear detailed history</button>
+    <button class="button secondary" id="clearHistory">Clear all progress</button>
   </div>
+  <p id="importStatus" aria-live="polite"></p>
 </section>
+
+<section class="card recommendation" id="recommendation"></section>
 
 <section class="card">
   <h2>Performance by module</h2>
@@ -58,9 +65,9 @@
 <section class="card">
   <h2>How tracking works</h2>
   <div class="notice">
-    <p>The site now records question ID, module, concept, visual status, selected answer, correct answer, date, first attempt, and session score in this browser.</p>
-    <p class="zh">网站现在会在此浏览器中记录题目编号、模块、主题、是否为图像题、所选答案、正确答案、日期、首次作答及每次练习成绩。</p>
-    <p><strong>Important:</strong> browser storage can be erased. Export a JSON backup periodically.</p>
+    <p>All practice, exams, visual questions, Indices, mixed mocks, and Medication Matching now feed one progress record on this device. “First try” is counted only once per question.</p>
+    <p class="zh">所有练习、考试、图像题、指数、综合模拟考试及药物配对现在都会记录在此设备上的同一进度档案中。每题仅计算一次“首次作答”。</p>
+    <p><strong>Important:</strong> browser storage can be erased. Export a JSON backup periodically; Restore moves the complete record to another device.</p>
   </div>
 </section>
 </div>
