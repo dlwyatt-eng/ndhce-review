@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>NDHCE Rapid Review</title>
+    <link rel="stylesheet" href="indices-styles.css?v=5" />
+    <link rel="stylesheet" href="rapid-review.css?v=1" />
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div>
+          <p class="tag">FAST, ACTIVE BOARD REVIEW</p>
+          <h1>
+            <span id="subjectIcon">⚡</span>
+            <span id="subjectTitle">Rapid Review</span>
+          </h1>
+          <p id="subjectTitleZh" class="zh"></p>
+          <p class="sub">
+            Use the five-minute layer first, then open only the detail you need.
+            Finish with recall instead of rereading.<span class="zh"
+              >先完成五分钟重点，再只查看需要的详细内容，最后用主动回忆巩固。</span
+            >
+          </p>
+        </div>
+        <div class="nav">
+          <a id="hubLink" class="button secondary" href="index.html"
+            >← Subject hub</a
+          ><a class="button secondary" href="index.html">Main home</a>
+        </div>
+      </header>
+
+      <section class="card rapid-selector" aria-label="Choose a review subject">
+        <label for="subjectSelect"><b>Subject / 科目</b></label>
+        <select id="subjectSelect"></select>
+        <div
+          id="subjectPills"
+          class="subject-pills"
+          aria-label="Rapid review subjects"
+        ></div>
+      </section>
+
+      <section class="card" aria-label="Rapid review progress">
+        <div class="stats">
+          <div class="stat">
+            <strong id="subjectCount">9</strong
+            ><span>subject summaries / 科目总结</span>
+          </div>
+          <div class="stat">
+            <strong id="reviewedCount">0</strong
+            ><span>marked reviewed / 已复习</span>
+          </div>
+          <div class="stat">
+            <strong id="bestScore">—</strong><span>best recall / 最佳回忆</span>
+          </div>
+          <div class="stat">
+            <strong id="lastReviewed">Not yet</strong
+            ><span>this subject / 本科目</span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="card review-tabs" aria-label="Review depth">
+        <button
+          class="review-tab active"
+          data-view="essentials"
+          aria-pressed="true"
+        >
+          ⚡ 5-minute essentials
+        </button>
+        <button class="review-tab" data-view="condensed" aria-pressed="false">
+          📘 20-minute review
+        </button>
+        <button class="review-tab" data-view="confusions" aria-pressed="false">
+          ↔ Don’t confuse
+        </button>
+        <button class="review-tab" data-view="memory" aria-pressed="false">
+          🧠 Memory cues
+        </button>
+        <button class="review-tab" data-view="recall" aria-pressed="false">
+          ✅ Quick recall
+        </button>
+      </nav>
+
+      <main>
+        <section
+          id="essentialsView"
+          class="review-view"
+          aria-label="Five-minute essentials"
+        >
+          <div class="card review-heading">
+            <div>
+              <p class="tag">START HERE</p>
+              <h2>Six facts to anchor the subject</h2>
+              <p class="muted">
+                Read once, cover the text, and say each idea back in your own
+                words.
+              </p>
+            </div>
+            <span class="time-badge">≈ 5 min</span>
+          </div>
+          <div id="essentialsList" class="essential-grid"></div>
+        </section>
+
+        <section
+          id="condensedView"
+          class="review-view hidden"
+          aria-label="Twenty-minute condensed review"
+        >
+          <div class="card review-heading">
+            <div>
+              <p class="tag">COMPLETE CONDENSED LAYER</p>
+              <h2>High-yield review by concept</h2>
+              <p class="muted">
+                Open only the sections you need. Each one links straight to
+                practice.
+              </p>
+            </div>
+            <span class="time-badge">≈ 20 min</span>
+          </div>
+          <div id="sectionList"></div>
+        </section>
+
+        <section
+          id="confusionsView"
+          class="review-view hidden"
+          aria-label="Commonly confused concepts"
+        >
+          <div class="card">
+            <p class="tag">EXAM TRAPS</p>
+            <h2>Don’t confuse these</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Concept A</th>
+                    <th>Concept B</th>
+                    <th>The deciding difference</th>
+                  </tr>
+                </thead>
+                <tbody id="confusionRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="memoryView"
+          class="review-view hidden"
+          aria-label="Memory aids"
+        >
+          <div class="card">
+            <p class="tag">RETRIEVAL CUES</p>
+            <h2>Memory aids</h2>
+            <p class="muted">
+              Use these as prompts, then reconstruct the complete idea without
+              looking.
+            </p>
+            <div id="memoryList" class="memory-grid"></div>
+          </div>
+        </section>
+
+        <section
+          id="recallView"
+          class="review-view hidden"
+          aria-label="Quick recall check"
+        >
+          <div class="card">
+            <p class="tag">CLOSE THE LOOP</p>
+            <h2>Five-question quick recall</h2>
+            <p class="muted">
+              Answer from memory. Explanations appear after each choice; your
+              best score is saved.
+            </p>
+          </div>
+          <div id="recallList"></div>
+          <div
+            id="recallResult"
+            class="card center hidden"
+            aria-live="polite"
+          ></div>
+        </section>
+      </main>
+
+      <section class="card rapid-finish">
+        <div>
+          <h2>Finished this review?</h2>
+          <p class="muted">
+            Mark it reviewed, then test the weakest concepts while they are
+            still fresh.
+          </p>
+        </div>
+        <div class="nav">
+          <button id="markReviewed" class="primary">
+            ✓ Mark reviewed / 标记已复习</button
+          ><a id="practiceLink" class="button blue" href="#"
+            >Test weak areas →</a
+          >
+        </div>
+      </section>
+
+      <section class="card source-note">
+        <b>Scope and source</b>
+        <p id="sourceNote"></p>
+        <span class="zh"
+          >这是根据上传课程复习资料制作的快速复习工具，并非临床操作规范。涉及法律、药物或急救时，请遵循现行监管机构和临床指南。</span
+        >
+      </section>
+    </div>
+    <script src="progress-tracker.js"></script>
+    <script src="rapid-review-data.js"></script>
+    <script src="rapid-review.js"></script>
+  </body>
+</html>
