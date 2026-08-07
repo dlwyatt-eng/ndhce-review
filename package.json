@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "node tests/p0-regression.mjs && node tests/p1-progress.mjs && node tests/p2-medications.mjs"
+    "test": "node tests/p0-regression.mjs && node tests/p1-progress.mjs && node tests/p2-medications.mjs && node tests/p3-rapid-review.mjs"
   },
   "devDependencies": {
     "jsdom": "^26.1.0",
